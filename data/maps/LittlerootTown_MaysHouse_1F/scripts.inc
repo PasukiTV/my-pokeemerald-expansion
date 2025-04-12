@@ -1,6 +1,6 @@
 .set LOCALID_MOM, 1
-.set LOCALID_RIVAL_MOM, 4
-.set LOCALID_RIVAL, 7
+.set LOCALID_RIVAL_MOM, 2
+.set LOCALID_RIVAL, 5
 
 LittlerootTown_MaysHouse_1F_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, LittlerootTown_MaysHouse_1F_OnLoad
