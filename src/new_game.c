@@ -51,7 +51,9 @@
 extern const u8 EventScript_ResetAllMapFlags[];
 
 static void ClearFrontierRecord(void);
+/* OLD#
 static void WarpToTruck(void);
+*/
 static void ResetMiniGamesRecords(void);
 static void ResetItemFlags(void);
 static void ResetDexNav(void);
@@ -128,10 +130,58 @@ static void ClearFrontierRecord(void)
     gSaveBlock2Ptr->frontier.opponentNames[1][0] = EOS;
 }
 
-static void WarpToTruck(void)
+
+
+/* OLD#
+static void WarpToTruck(void) 
+{ 
+    SetWarpDestination(MAP_GROUP(INSIDE_OF_TRUCK), MAP_NUM(INSIDE_OF_TRUCK), WARP_ID_NONE, -1, -1); 
+    WarpIntoMap(); 
+}
+*/
+
+// Legt die Startposition des Spielers beim Spielstart fest (statt im Truck).
+static void SetPlayerInitialSpawnLocation(void)
 {
-    SetWarpDestination(MAP_GROUP(INSIDE_OF_TRUCK), MAP_NUM(INSIDE_OF_TRUCK), WARP_ID_NONE, -1, -1);
-    WarpIntoMap();
+    if (gSaveBlock2Ptr->playerGender == MALE)
+    {
+        // Startposition in Brendans Zimmer (2. Etage)
+        SetWarpDestination(MAP_GROUP(LITTLEROOT_TOWN_BRENDANS_HOUSE_2F), MAP_NUM(LITTLEROOT_TOWN_BRENDANS_HOUSE_2F), WARP_ID_NONE, 1, 4);
+        WarpIntoMap();
+
+        // Intro-Zustand setzen (wird für bestimmte Scripts verwendet)
+        VarSet(VAR_LITTLEROOT_INTRO_STATE, 1);
+        VarSet(VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 1); // Brendan ist zu Hause
+
+        // Bestimmte NPCs und Objekte ausblenden, da Brendan ausgewählt wurde
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_MOM);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_SIBLING);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_POKE_BALL);
+    }
+    else
+    {
+        // Startposition in Mays Zimmer (2. Etage)
+        SetWarpDestination(MAP_GROUP(LITTLEROOT_TOWN_MAYS_HOUSE_2F), MAP_NUM(LITTLEROOT_TOWN_MAYS_HOUSE_2F), WARP_ID_NONE, 7, 4);
+        WarpIntoMap();
+
+        // Intro-Zustand setzen;
+        VarSet(VAR_LITTLEROOT_INTRO_STATE, 2);
+        VarSet(VAR_LITTLEROOT_HOUSES_STATE_MAY, 1); // May ist zu Hause
+
+        // Bestimmte NPCs und Objekte ausblenden, da May ausgewählt wurde
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING);
+        FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL);
+    }
+
+    // Intro-Szene wird als abgeschlossen markiert
+    VarSet(VAR_LITTLEROOT_INTRO_STATE, 6);
+
+    // Die Wanduhr gilt als bereits gestellt
+    FlagSet(FLAG_SET_WALL_CLOCK);
+    FlagSet(FLAG_SYS_CLOCK_SET);
 }
 
 void Sav2_ClearSetDefault(void)
@@ -196,7 +246,12 @@ void NewGameInitData(void)
     InitDewfordTrend();
     ResetFanClub();
     ResetLotteryCorner();
+    SetPlayerInitialSpawnLocation();
+    
+    /* OLD#
     WarpToTruck();
+    */
+    
     RunScriptImmediately(EventScript_ResetAllMapFlags);
     ResetMiniGamesRecords();
     InitUnionRoomChatRegisteredTexts();
