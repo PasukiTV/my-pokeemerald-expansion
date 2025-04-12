@@ -1,3 +1,4 @@
+raw `
 .set LOCALID_TWIN, 1
 .set LOCALID_MOM, 4
 .set LOCALID_RIVAL, 5
@@ -1020,3 +1021,4 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
 
+`
