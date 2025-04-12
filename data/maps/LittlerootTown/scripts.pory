@@ -109,11 +109,16 @@ LittlerootTown_EventScript_SetMomInFrontOfDoorFemale::
 	return
 
 LittlerootTown_OnFrame:
+	/* OLD#
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 1, LittlerootTown_EventScript_StepOffTruckMale
+	*/
+	/* OLD#
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_EventScript_StepOffTruckFemale
+	*/
 	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_BeginDexUpgradeScene
 	.2byte 0
 
+/* OLD#
 LittlerootTown_EventScript_StepOffTruckMale::
 	lockall
 	setvar VAR_0x8004, 5
@@ -124,7 +129,9 @@ LittlerootTown_EventScript_StepOffTruckMale::
 	waitstate
 	releaseall
 	end
+*/
 
+/* OLD#
 LittlerootTown_EventScript_StepOffTruckFemale::
 	lockall
 	setvar VAR_0x8004, 14
@@ -135,7 +142,9 @@ LittlerootTown_EventScript_StepOffTruckFemale::
 	waitstate
 	releaseall
 	end
+*/
 
+/* OLD#
 LittlerootTown_EventScript_GoInsideWithMom::
 	delay 15
 	playse SE_LEDGE
@@ -169,6 +178,7 @@ LittlerootTown_EventScript_GoInsideWithMom::
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	return
+*/
 
 LittlerootTown_Movement_MomExitHouse:
 	walk_down
@@ -911,6 +921,7 @@ LittlerootTown_EventScript_GiveRunningShoes::
 	delay 30
 	return
 
+/* OLD#
 LittlerootTown_Text_OurNewHomeLetsGoInside:
 	.string "MOM: {PLAYER}, we're here, honey!\p"
 	.string "It must be tiring riding with our things\n"
@@ -922,6 +933,7 @@ LittlerootTown_Text_OurNewHomeLetsGoInside:
 	.string "an easy place to live, don't you think?\p"
 	.string "And, you get your own room, {PLAYER}!\n"
 	.string "Let's go inside.$"
+*/
 
 LittlerootTown_Text_WaitPlayer:
 	.string "MOM: Wait, {PLAYER}!$"
