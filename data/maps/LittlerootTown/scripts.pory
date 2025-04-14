@@ -426,6 +426,7 @@ LittlerootTown_EventScript_GoSaveBirchTrigger::
 	end
 */
 
+/* OLD#
 LittlerootTown_EventScript_TownSign::
 	msgbox LittlerootTown_Text_TownSign, MSGBOX_SIGN
 	end
@@ -465,6 +466,8 @@ LittlerootTown_EventScript_BirchsHouseSignMale::
 LittlerootTown_EventScript_PlayersHouseSignFemale::
 	msgbox LittlerootTown_Text_PlayersHouse, MSGBOX_DEFAULT
 	return
+
+*/
 
 LittlerootTown_EventScript_GiveRunningShoesTrigger0::
 	lockall
@@ -1016,9 +1019,11 @@ LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut:
 	.string "wild POKéMON will jump out!$"
 */
 
+/* OLD#
 LittlerootTown_Text_DangerousIfYouDontHavePokemon:
 	.string "It's dangerous if you don't have\n"
 	.string "your own POKéMON.$"
+*/
 
 /* OLD#
 LittlerootTown_Text_CanYouGoSeeWhatsHappening:
@@ -1043,18 +1048,24 @@ LittlerootTown_Text_GoodLuckCatchingPokemon:
 	.string "Good luck!$"
 */
 
+/* OLD#
 LittlerootTown_Text_TownSign:
 	.string "LITTLEROOT TOWN\n"
 	.string "“A town that can't be shaded any hue.”$"
+*/
 
+/* OLD#
 LittlerootTown_Text_ProfBirchsLab:
 	.string "PROF. BIRCH'S POKéMON LAB$"
+*/
 
+/* OLD#
 LittlerootTown_Text_PlayersHouse:
 	.string "{PLAYER}'s HOUSE$"
 
 LittlerootTown_Text_ProfBirchsHouse:
 	.string "PROF. BIRCH'S HOUSE$"
+*/
 
 LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "PROF. BIRCH: Well, well, {PLAYER}{KUN}!\n"
@@ -1092,25 +1103,15 @@ text LittlerootTown_Text_BirchSpendsDaysInLab {
 	"at home?$"
 }
 
-script LittlerootTown_EventScript_Twin {
-    lock
-    faceplayer
-
-    if (flag(FLAG_ADVENTURE_STARTED)) {
-        goto (LittlerootTown_EventScript_GoodLuck)
-    }
-
-    elif (flag(FLAG_RESCUED_BIRCH)) {
-        goto (LittlerootTown_EventScript_YouSavedBirch)
-    }
-
-    elif (var(VAR_LITTLEROOT_TOWN_STATE) != 0) {
-        goto (LittlerootTown_EventScript_GoSaveBirch)
-    }
-
-    msgbox (LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT)
-    release
-    end
+script LittlerootTown_EventScript_Twin{
+	lock
+	faceplayer
+	goto_if_set (FLAG_ADVENTURE_STARTED, LittlerootTown_EventScript_GoodLuck)
+	goto_if_set (FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_YouSavedBirch)
+	goto_if_ne (VAR_LITTLEROOT_TOWN_STATE, 0, LittlerootTown_EventScript_GoSaveBirch)
+	msgbox (LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT)
+	release
+	end
 }
 
 script LittlerootTown_EventScript_GoodLuck {
@@ -1254,6 +1255,11 @@ script LittlerootTown_EventScript_DangerousWithoutPokemon{
 	return
 }
 
+text LittlerootTown_Text_DangerousIfYouDontHavePokemon{
+	"It's dangerous if you don't have\n"
+	"your own POKéMON.$"
+}
+
 text LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut{
 	"Um, um, um!\p"
 	"If you go outside and go in the grass,\n"
@@ -1280,3 +1286,69 @@ text LittlerootTown_Text_CanYouGoSeeWhatsHappening{
 	"for me?$"
 }
 
+// Town Signs
+
+script LittlerootTown_EventScript_TownSign{
+	msgbox (LittlerootTown_Text_TownSign, MSGBOX_SIGN)
+	end
+}
+
+text LittlerootTown_Text_TownSign{
+	"LITTLEROOT TOWN\n"
+	"“A town that can't be shaded any hue.”$"
+}
+
+script LittlerootTown_EventScript_BirchsLabSign{
+	msgbox (LittlerootTown_Text_ProfBirchsLab, MSGBOX_SIGN)
+	end
+}
+
+text LittlerootTown_Text_ProfBirchsLab{
+	"PROF. BIRCH'S POKéMON LAB$"
+}
+
+script LittlerootTown_EventScript_BrendansHouseSign{
+	lockall
+	checkplayergender
+	call_if_eq (VAR_RESULT, MALE, LittlerootTown_EventScript_PlayersHouseSignMale)
+	call_if_eq (VAR_RESULT, FEMALE, LittlerootTown_EventScript_BirchsHouseSignFemale)
+	releaseall
+	end
+}
+
+script LittlerootTown_EventScript_PlayersHouseSignMale{
+	msgbox (LittlerootTown_Text_PlayersHouse, MSGBOX_DEFAULT)
+	return
+}
+
+script LittlerootTown_EventScript_BirchsHouseSignFemale{
+	msgbox (LittlerootTown_Text_ProfBirchsHouse, MSGBOX_DEFAULT)
+	return
+}
+
+script LittlerootTown_EventScript_MaysHouseSign{
+	lockall
+	checkplayergender
+	call_if_eq (VAR_RESULT, MALE, LittlerootTown_EventScript_BirchsHouseSignMale)
+	call_if_eq (VAR_RESULT, FEMALE, LittlerootTown_EventScript_PlayersHouseSignFemale)
+	releaseall
+	end
+}
+
+script LittlerootTown_EventScript_BirchsHouseSignMale{
+	msgbox (LittlerootTown_Text_ProfBirchsHouse, MSGBOX_DEFAULT)
+	return
+}
+
+script LittlerootTown_EventScript_PlayersHouseSignFemale{
+	msgbox (LittlerootTown_Text_PlayersHouse, MSGBOX_DEFAULT)
+	return
+}
+
+text LittlerootTown_Text_PlayersHouse{
+	"{PLAYER}'s HOUSE$"
+}
+
+text LittlerootTown_Text_ProfBirchsHouse{
+	"PROF. BIRCH'S HOUSE$"
+}
