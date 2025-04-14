@@ -43,6 +43,7 @@ LittlerootTown_MapScripts::
 
 LittlerootTown_OnTransition:
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
 	call Common_EventScript_SetupRivalGfxId
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_EventScript_MoveMomToMaysDoor
 	call_if_unset FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_SetTwinPos
@@ -258,14 +259,18 @@ LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeFemale::
 	setobjectxy LOCALID_BIRCH, 14, 10
 	end
 
+/* OLD#
 LittlerootTown_EventScript_FatMan::
 	msgbox LittlerootTown_Text_CanUsePCToStoreItems, MSGBOX_NPC
 	end
-
+*/
+/* OLD#
 LittlerootTown_EventScript_Boy::
 	msgbox LittlerootTown_Text_BirchSpendsDaysInLab, MSGBOX_NPC
 	end
+*/
 
+/* OLD#
 LittlerootTown_EventScript_Twin::
 	lock
 	faceplayer
@@ -275,7 +280,9 @@ LittlerootTown_EventScript_Twin::
 	msgbox LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT
 	release
 	end
+*/
 
+/* OLD#
 LittlerootTown_EventScript_GoSaveBirch::
 	special GetPlayerBigGuyGirlString
 	msgbox LittlerootTown_Text_CanYouGoSeeWhatsHappening, MSGBOX_DEFAULT
@@ -285,18 +292,24 @@ LittlerootTown_EventScript_GoSaveBirch::
 	setvar VAR_LITTLEROOT_TOWN_STATE, 2
 	release
 	end
+*/
 
+/* OLD#
 LittlerootTown_EventScript_YouSavedBirch::
 	special GetPlayerBigGuyGirlString
 	msgbox LittlerootTown_Text_YouSavedBirch, MSGBOX_DEFAULT
 	release
 	end
+*/
 
+/* OLD#
 LittlerootTown_EventScript_GoodLuck::
 	msgbox LittlerootTown_Text_GoodLuckCatchingPokemon, MSGBOX_DEFAULT
 	release
 	end
+*/
 
+/* OLD#
 LittlerootTown_EventScript_NeedPokemonTriggerLeft::
 	lockall
 	applymovement LOCALID_TWIN, LittlerootTown_Movement_TwinApproachPlayerLeft
@@ -306,7 +319,9 @@ LittlerootTown_EventScript_NeedPokemonTriggerLeft::
 	waitmovement 0
 	releaseall
 	end
+*/
 
+/* OLD#
 LittlerootTown_EventScript_DangerousWithoutPokemon::
 	msgbox LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT
 	closemessage
@@ -316,7 +331,9 @@ LittlerootTown_EventScript_DangerousWithoutPokemon::
 	msgbox LittlerootTown_Text_DangerousIfYouDontHavePokemon, MSGBOX_DEFAULT
 	closemessage
 	return
+*/
 
+/* OLD#
 LittlerootTown_Movement_TwinApproachPlayerLeft:
 	face_right
 	delay_8
@@ -354,7 +371,9 @@ LittlerootTown_Movement_PushPlayerBackFromRoute:
 	walk_down
 	unlock_facing_direction
 	step_end
+*/
 
+/* OLD#
 LittlerootTown_EventScript_NeedPokemonTriggerRight::
 	lockall
 	applymovement LOCALID_TWIN, LittlerootTown_Movement_TwinApproachPlayerRight
@@ -388,7 +407,9 @@ LittlerootTown_Movement_TwinReturnRight:
 	walk_left
 	walk_in_place_faster_down
 	step_end
+*/
 
+/* OLD#
 LittlerootTown_EventScript_GoSaveBirchTrigger::
 	lockall
 	applymovement LOCALID_TWIN, Common_Movement_WalkInPlaceFasterRight
@@ -403,6 +424,7 @@ LittlerootTown_EventScript_GoSaveBirchTrigger::
 	setvar VAR_LITTLEROOT_TOWN_STATE, 2
 	releaseall
 	end
+*/
 
 LittlerootTown_EventScript_TownSign::
 	msgbox LittlerootTown_Text_TownSign, MSGBOX_SIGN
@@ -971,27 +993,34 @@ LittlerootTown_Text_ComeHomeIfAnythingHappens:
 	.string "If anything happens, you can come home.\p"
 	.string "Go on, go get them, honey!$"
 
+/* OLD#
 LittlerootTown_Text_CanUsePCToStoreItems:
 	.string "If you use a PC, you can store items\n"
 	.string "and POKéMON.\p"
 	.string "The power of science is staggering!$"
+*/
 
+/* OLD#
 LittlerootTown_Text_BirchSpendsDaysInLab:
 	.string "PROF. BIRCH spends days in his LAB\n"
 	.string "studying, then he'll suddenly go out in\l"
 	.string "the wild to do more research…\p"
 	.string "When does PROF. BIRCH spend time\n"
 	.string "at home?$"
+*/
 
+/* OLD#
 LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut:
 	.string "Um, um, um!\p"
 	.string "If you go outside and go in the grass,\n"
 	.string "wild POKéMON will jump out!$"
+*/
 
 LittlerootTown_Text_DangerousIfYouDontHavePokemon:
 	.string "It's dangerous if you don't have\n"
 	.string "your own POKéMON.$"
 
+/* OLD#
 LittlerootTown_Text_CanYouGoSeeWhatsHappening:
 	.string "Um, hi!\p"
 	.string "There are scary POKéMON outside!\n"
@@ -1000,14 +1029,19 @@ LittlerootTown_Text_CanYouGoSeeWhatsHappening:
 	.string "but I don't have any POKéMON…\p"
 	.string "Can you go see what's happening\n"
 	.string "for me?$"
+*/
 
+/* OLD#
 LittlerootTown_Text_YouSavedBirch:
 	.string "You saved PROF. BIRCH!\n"
 	.string "I'm so glad!$"
+*/
 
+/* OLD#
 LittlerootTown_Text_GoodLuckCatchingPokemon:
 	.string "Are you going to catch POKéMON?\n"
 	.string "Good luck!$"
+*/
 
 LittlerootTown_Text_TownSign:
 	.string "LITTLEROOT TOWN\n"
@@ -1034,3 +1068,215 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "Let's go to my LAB.$"
 
 `
+script LittlerootTown_EventScript_FatMan {
+    msgbox (LittlerootTown_Text_CanUsePCToStoreItems, MSGBOX_NPC)
+    end
+}
+
+text LittlerootTown_Text_CanUsePCToStoreItems {
+    "If you use a PC, you can store items\n"
+    "and POKéMON.123.\p"
+    "The power of science is staggering!"
+}
+
+script LittlerootTown_EventScript_Boy {
+	msgbox (LittlerootTown_Text_BirchSpendsDaysInLab, MSGBOX_NPC)
+	end
+}
+
+text LittlerootTown_Text_BirchSpendsDaysInLab {
+	"PROF. BIRCH spends days in his LAB\n"
+	"studying, then he'll suddenly go out in\l"
+	"the wild to do more research…\p"
+	"When does PROF. BIRCH spend time\n"
+	"at home?$"
+}
+
+script LittlerootTown_EventScript_Twin {
+    lock
+    faceplayer
+
+    if (flag(FLAG_ADVENTURE_STARTED)) {
+        goto (LittlerootTown_EventScript_GoodLuck)
+    }
+
+    elif (flag(FLAG_RESCUED_BIRCH)) {
+        goto (LittlerootTown_EventScript_YouSavedBirch)
+    }
+
+    elif (var(VAR_LITTLEROOT_TOWN_STATE) != 0) {
+        goto (LittlerootTown_EventScript_GoSaveBirch)
+    }
+
+    msgbox (LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script LittlerootTown_EventScript_GoodLuck {
+    msgbox (LittlerootTown_Text_GoodLuckCatchingPokemon, MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script LittlerootTown_EventScript_YouSavedBirch {
+    special (GetPlayerBigGuyGirlString)
+    msgbox (LittlerootTown_Text_YouSavedBirch, MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script LittlerootTown_EventScript_GoSaveBirch {
+    special (GetPlayerBigGuyGirlString)
+    msgbox (LittlerootTown_Text_CanYouGoSeeWhatsHappening, MSGBOX_DEFAULT)
+    closemessage
+    applymovement (LOCALID_TWIN, Common_Movement_FaceOriginalDirection)
+    waitmovement (0)
+    setvar (VAR_LITTLEROOT_TOWN_STATE, 2)
+    release
+    end
+}
+
+script LittlerootTown_EventScript_GoSaveBirchTrigger{
+	lockall
+	applymovement (LOCALID_TWIN, Common_Movement_WalkInPlaceFasterRight)
+	waitmovement(0)
+	applymovement (OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft)
+	waitmovement (0)
+	special (GetPlayerBigGuyGirlString)
+	msgbox (LittlerootTown_Text_CanYouGoSeeWhatsHappening, MSGBOX_DEFAULT)
+	closemessage
+	applymovement (LOCALID_TWIN, Common_Movement_FaceOriginalDirection)
+	waitmovement (0)
+	setvar (VAR_LITTLEROOT_TOWN_STATE, 2)
+	releaseall
+	end
+}
+
+script LittlerootTown_EventScript_NeedPokemonTriggerLeft{
+	lockall
+	applymovement (LOCALID_TWIN, LittlerootTown_Movement_TwinApproachPlayerLeft)
+	waitmovement (0)
+	call (LittlerootTown_EventScript_DangerousWithoutPokemon)
+	applymovement (LOCALID_TWIN, LittlerootTown_Movement_TwinReturnLeft)
+	waitmovement (0)
+	releaseall
+	end
+}
+
+script LittlerootTown_Movement_TwinApproachPlayerLeft{
+	face_right
+	delay_8
+	disable_jump_landing_ground_effect
+	jump_in_place_right
+	delay_8
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_left
+	face_down
+	step_end
+}
+
+script LittlerootTown_Movement_TwinPushPlayerFromRoute{
+	walk_down
+	step_end
+}
+
+script LittlerootTown_Movement_TwinReturnLeft{
+	walk_right
+	walk_down
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	walk_in_place_faster_down
+	step_end
+}
+
+script LittlerootTown_Movement_PushPlayerBackFromRoute{
+	lock_facing_direction
+	walk_down
+	unlock_facing_direction
+	step_end
+}
+
+script LittlerootTown_EventScript_NeedPokemonTriggerRight{
+	lockall
+	applymovement (LOCALID_TWIN, LittlerootTown_Movement_TwinApproachPlayerRight)
+	waitmovement (0)
+	call (LittlerootTown_EventScript_DangerousWithoutPokemon)
+	applymovement (LOCALID_TWIN, LittlerootTown_Movement_TwinReturnRight)
+	waitmovement (0)
+	releaseall
+	end
+}
+
+script LittlerootTown_Movement_TwinApproachPlayerRight{
+	face_right
+	delay_8
+	disable_jump_landing_ground_effect
+	jump_in_place_right
+	delay_8
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_right
+	face_down
+	step_end
+}
+
+script LittlerootTown_Movement_TwinReturnRight{
+	walk_left
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_in_place_faster_down
+	step_end
+}
+
+script LittlerootTown_EventScript_DangerousWithoutPokemon{
+	msgbox (LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT)
+	closemessage
+	applymovement (LOCALID_TWIN, LittlerootTown_Movement_TwinPushPlayerFromRoute)
+	applymovement (OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PushPlayerBackFromRoute)
+	waitmovement (0)
+	msgbox (LittlerootTown_Text_DangerousIfYouDontHavePokemon, MSGBOX_DEFAULT)
+	closemessage
+	return
+}
+
+text LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut{
+	"Um, um, um!\p"
+	"If you go outside and go in the grass,\n"
+	"wild POKéMON will jump out!$"
+	}
+
+text LittlerootTown_Text_GoodLuckCatchingPokemon{
+	"Are you going to catch POKéMON?\n"
+	"Good luck!$"
+}
+
+text LittlerootTown_Text_YouSavedBirch{
+	"You saved PROF. BIRCH!\n"
+	"I'm so glad!$"
+}
+
+text LittlerootTown_Text_CanYouGoSeeWhatsHappening{
+	"Um, hi!\p"
+	"There are scary POKéMON outside!\n"
+	"I can hear their cries!\p"
+	"I want to go see what's going on,\n"
+	"but I don't have any POKéMON…\p"
+	"Can you go see what's happening\n"
+	"for me?$"
+}
+
