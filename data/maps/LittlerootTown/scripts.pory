@@ -210,7 +210,7 @@ script LittlerootTown_EventScript_FatMan {
 
 text LittlerootTown_Text_CanUsePCToStoreItems {
     "If you use a PC, you can store items\n"
-    "and POKéMON.123.\p"
+    "and POKéMON.\p"
     "The power of science is staggering!"
 }
 
@@ -218,6 +218,9 @@ script LittlerootTown_EventScript_Boy {
 	msgbox (LittlerootTown_Text_BirchSpendsDaysInLab, MSGBOX_NPC)
 	giveitem (ITEM_MEGA_RING)
 	giveitem(ITEM_SWAMPERTITE, 100)
+	giveitem(ITEM_SHINY_CHARM)
+	givemon(SPECIES_SWAMPERT,10,ITEM_SWAMPERTITE,ITEM_MASTER_BALL)
+	givemon(SPECIES_RAYQUAZA,10,,ITEM_MASTER_BALL)
 	end
 }
 

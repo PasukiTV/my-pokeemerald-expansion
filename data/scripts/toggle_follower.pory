@@ -1,0 +1,17 @@
+script ToggleFollowerMenu{
+
+if (flag(B_FLAG_FOLLOWERS_DISABLED)){
+        msgbox(deactivated,MSGBOX_NPC)
+        }else{
+        msgbox(activated,MSGBOX_NPC)
+        }
+return
+}
+
+text deactivated{
+    "Follower Pokemon deactivated"
+}
+
+text activated{
+    "Follower Pokemon activated"
+}

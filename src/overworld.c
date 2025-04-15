@@ -1652,6 +1652,7 @@ void CB2_WhiteOut(void)
 
 void CB2_LoadMap(void)
 {
+    ResetFollowerPositionHistory();
     FieldClearVBlankHBlankCallbacks();
     ScriptContext_Init();
     UnlockPlayerFieldControls();

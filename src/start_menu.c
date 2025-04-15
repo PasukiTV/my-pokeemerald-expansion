@@ -1,4 +1,5 @@
 #include "global.h"
+#include "event_data.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
 #include "battle_pyramid_bag.h"
@@ -49,7 +50,11 @@
 #include "constants/battle_frontier.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "field_tasks.h"
 
+
+
+extern u8 ToggleFollowerMenu[];
 // Menu actions
 enum
 {
@@ -60,6 +65,7 @@ enum
     MENU_ACTION_PLAYER,
     MENU_ACTION_SAVE,
     MENU_ACTION_OPTION,
+    MENU_ACTION_TOGGLE_FOLLOWER,
     MENU_ACTION_EXIT,
     MENU_ACTION_RETIRE_SAFARI,
     MENU_ACTION_PLAYER_LINK,
@@ -103,6 +109,7 @@ static bool8 StartMenuPokeNavCallback(void);
 static bool8 StartMenuPlayerNameCallback(void);
 static bool8 StartMenuSaveCallback(void);
 static bool8 StartMenuOptionCallback(void);
+static bool8 StartMenuToggleFollowerCallback(void);
 static bool8 StartMenuExitCallback(void);
 static bool8 StartMenuSafariZoneRetireCallback(void);
 static bool8 StartMenuLinkModePlayerNameCallback(void);
@@ -197,6 +204,7 @@ static const struct MenuAction sStartMenuItems[] =
     [MENU_ACTION_PLAYER]          = {gText_MenuPlayer,  {.u8_void = StartMenuPlayerNameCallback}},
     [MENU_ACTION_SAVE]            = {gText_MenuSave,    {.u8_void = StartMenuSaveCallback}},
     [MENU_ACTION_OPTION]          = {gText_MenuOption,  {.u8_void = StartMenuOptionCallback}},
+    [MENU_ACTION_TOGGLE_FOLLOWER] = {gText_MenuToggleFollower,    {.u8_void = StartMenuToggleFollowerCallback}},
     [MENU_ACTION_EXIT]            = {gText_MenuExit,    {.u8_void = StartMenuExitCallback}},
     [MENU_ACTION_RETIRE_SAFARI]   = {gText_MenuRetire,  {.u8_void = StartMenuSafariZoneRetireCallback}},
     [MENU_ACTION_PLAYER_LINK]     = {gText_MenuPlayer,  {.u8_void = StartMenuLinkModePlayerNameCallback}},
@@ -347,6 +355,10 @@ static void BuildNormalStartMenu(void)
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
     AddStartMenuAction(MENU_ACTION_OPTION);
+    
+    if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
+    AddStartMenuAction(MENU_ACTION_TOGGLE_FOLLOWER),
+    
     AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
@@ -648,6 +660,7 @@ static bool8 HandleStartMenuInput(void)
         gMenuCallback = sStartMenuItems[sCurrentStartMenuActions[sStartMenuCursorPos]].func.u8_void;
 
         if (gMenuCallback != StartMenuSaveCallback
+            && gMenuCallback != StartMenuToggleFollowerCallback
             && gMenuCallback != StartMenuExitCallback
             && gMenuCallback != StartMenuDebugCallback
             && gMenuCallback != StartMenuSafariZoneRetireCallback
@@ -776,6 +789,34 @@ static bool8 StartMenuOptionCallback(void)
 
     return FALSE;
 }
+
+static bool8 StartMenuToggleFollowerCallback(void)
+{
+    struct ObjectEvent *followerObject = GetFollowerObject();
+
+    RemoveExtraStartMenuWindows();
+    HideStartMenu();
+    ScriptContext_SetupScript(ToggleFollowerMenu);
+
+    if (followerObject && !FlagGet(B_FLAG_FOLLOWERS_DISABLED))
+    {
+        ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
+        ObjectEventSetHeldMovement(followerObject, MOVEMENT_ACTION_ENTER_POKEBALL);
+        CreateTask(Task_RemoveFollowerAfterAnim, 0);
+        FlagSet(B_FLAG_FOLLOWERS_DISABLED);
+    }
+    else
+    {
+        FlagClear(B_FLAG_FOLLOWERS_DISABLED);
+        ResetFollowerPositionHistory();
+        UpdateFollowingPokemon();
+        
+    }
+
+    return TRUE;
+}
+
+
 
 static bool8 StartMenuExitCallback(void)
 {

@@ -20,6 +20,7 @@
 #include "constants/items.h"
 #include "constants/songs.h"
 #include "constants/metatile_labels.h"
+#include "event_object_movement.h"
 
 /*  This file handles some persistent tasks that run in the overworld.
  *  - Task_RunTimeBasedEvents: Periodically updates local time and RTC events. Also triggers ambient cries.
@@ -953,5 +954,17 @@ static void Task_MuddySlope(u8 taskId)
             data[i + SLOPE_Y] -= cameraOffsetY;
             SetMuddySlopeMetatile(&data[i + SLOPE_TIME], data[i + SLOPE_X], data[i + SLOPE_Y]);
         }
+    }
+}
+
+#define tTimer data[0]
+
+void Task_RemoveFollowerAfterAnim(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+    if (++task->tTimer >= 30) // ca. eine halbe Sekunde
+    {
+        RemoveFollowingPokemon();
+        DestroyTask(taskId);
     }
 }

@@ -5487,6 +5487,20 @@ bool8 FollowablePlayerMovement_Idle(struct ObjectEvent *objectEvent, struct Spri
     return FALSE;
 }
 
+static s16 sSecondLastPlayerCoordX = 0;
+static s16 sLastPlayerCoordX = 0;
+static s16 sSecondLastPlayerCoordY = 0;
+static s16 sLastPlayerCoordY = 0;
+
+
+void ResetFollowerPositionHistory(void)
+{
+    sSecondLastPlayerCoordX = -1;
+    sLastPlayerCoordX = -1;
+    sSecondLastPlayerCoordY = -1;
+    sLastPlayerCoordY = -1;
+}
+
 bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Sprite *sprite, u8 playerDirection, bool8 tileCallback(u8))
 {
     u32 direction;
@@ -5496,10 +5510,36 @@ bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Spri
     s16 targetY;
     u32 playerAction = gObjectEvents[gPlayerAvatar.objectEventId].movementActionId;
 
-    targetX = gObjectEvents[gPlayerAvatar.objectEventId].previousCoords.x;
-    targetY = gObjectEvents[gPlayerAvatar.objectEventId].previousCoords.y;
+    s16 prevX = gObjectEvents[gPlayerAvatar.objectEventId].previousCoords.x;
+    s16 prevY = gObjectEvents[gPlayerAvatar.objectEventId].previousCoords.y;
+    s16 currX = gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.x;
+    s16 currY = gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.y;
+
+// Nur aktualisieren, wenn tatsächlich eine neue Position UND nicht dieselbe wie die vorherige gespeichert wurde
+if ((prevX != currX || prevY != currY) &&
+    !(prevX == sLastPlayerCoordX && prevY == sLastPlayerCoordY))
+{
+    sSecondLastPlayerCoordX = sLastPlayerCoordX;
+    sLastPlayerCoordX = prevX;
+
+    sSecondLastPlayerCoordY = sLastPlayerCoordY;
+    sLastPlayerCoordY = prevY;
+}
+
+    
+
+// Use second last instead of last
+targetX = sSecondLastPlayerCoordX;
+targetY = sSecondLastPlayerCoordY;
+
+    
     x = gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.x;
     y = gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.y;
+    
+    
+    // targetX = gObjectEvents[gPlayerAvatar.objectEventId].previousCoords.x;
+    // targetY = gObjectEvents[gPlayerAvatar.objectEventId].previousCoords.y;
+    
 
     if ((x == targetX && y == targetY) || !IsFollowerVisible()) // don't move on player collision or if not visible
         return FALSE;
@@ -5518,7 +5558,18 @@ bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Spri
             sprite->sTypeFuncId = 0; // return to shadowing state
             return FALSE;
         }
-        MoveObjectEventToMapCoords(objectEvent, targetX, targetY);
+        if (targetX >= 0 && targetY >= 0)
+{
+    MoveObjectEventToMapCoords(objectEvent, targetX, targetY);
+}
+else
+{
+    // Fallback: spawn einfach auf Spielerposition
+    // MoveObjectEventToMapCoords(objectEvent,
+    //                            gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.x,
+    //                            gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.y);
+    return FALSE;
+}
         ObjectEventSetSingleMovement(objectEvent, sprite, MOVEMENT_ACTION_EXIT_POKEBALL);
         objectEvent->singleMovementActive = TRUE;
         sprite->sTypeFuncId = 2;
