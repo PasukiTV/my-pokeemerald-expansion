@@ -118,3 +118,4 @@ extern const struct FollowerMsgInfoExtended gFollowerConditionalMessages[COND_MS
 extern const struct FollowerMessagePool gFollowerBasicMessages[FOLLOWER_EMOTION_LENGTH];
 
 #endif //GUARD_FOLLOWER_HELPER_H
+
