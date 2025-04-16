@@ -201,10 +201,6 @@ script LittlerootTown_SetMomInFrontOfDoorFemale {
 
 script LittlerootTown_EventScript_FatMan {
     msgbox (LittlerootTown_Text_CanUsePCToStoreItems, MSGBOX_NPC)
-    if (flag(B_FLAG_FOLLOWERS_DISABLED)){
-	clearflag (B_FLAG_FOLLOWERS_DISABLED)
-	}else{
-	setflag(B_FLAG_FOLLOWERS_DISABLED)}
 	end
 }
 
