@@ -264,6 +264,7 @@ static const u8 gText_BatteryRunDry[] = _("The internal battery has run dry.\nTh
 static const u8 gText_MainMenuNewGame[] = _("NEW GAME");
 static const u8 gText_MainMenuContinue[] = _("CONTINUE");
 static const u8 gText_MainMenuOption[] = _("OPTION");
+static const u8 gText_MainMenuLanguage[] = _("LANGUAGE");
 static const u8 gText_MainMenuMysteryGift[] = _("MYSTERY GIFT");
 static const u8 gText_MainMenuMysteryGift2[] = _("MYSTERY GIFT");
 static const u8 gText_MainMenuMysteryEvents[] = _("MYSTERY EVENTS");
@@ -284,6 +285,7 @@ static const u8 gText_ContinueMenuBadges[] = _("BADGES");
 #define MENU_TOP_WIN4 13
 #define MENU_TOP_WIN5 17
 #define MENU_TOP_WIN6 21
+#define MENU_TOP_WIN7 9
 #define MENU_WIDTH 26
 #define MENU_HEIGHT_WIN0 2
 #define MENU_HEIGHT_WIN1 2
@@ -292,6 +294,7 @@ static const u8 gText_ContinueMenuBadges[] = _("BADGES");
 #define MENU_HEIGHT_WIN4 2
 #define MENU_HEIGHT_WIN5 2
 #define MENU_HEIGHT_WIN6 2
+#define MENU_HEIGHT_WIN7 2
 
 #define MENU_LEFT_ERROR 2
 #define MENU_TOP_ERROR 15
@@ -326,6 +329,16 @@ static const struct WindowTemplate sWindowTemplates_MainMenu[] =
         .height = MENU_HEIGHT_WIN1,
         .paletteNum = 15,
         .baseBlock = 0x35
+    },
+    // LANGUAGE
+    {
+        .bg = 0,
+        .tilemapLeft = MENU_LEFT,
+        .tilemapTop = MENU_TOP_WIN7,
+        .width = MENU_WIDTH,
+        .height = MENU_HEIGHT_WIN7,
+        .paletteNum = 15,
+        .baseBlock = 0x69
     },
     // Has saved game
     // CONTINUE
@@ -540,6 +553,7 @@ enum
     ACTION_NEW_GAME,
     ACTION_CONTINUE,
     ACTION_OPTION,
+    ACTION_LANGUAGE,
     ACTION_MYSTERY_GIFT,
     ACTION_MYSTERY_EVENTS,
     ACTION_EREADER,
@@ -693,6 +707,8 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
             switch (tMenuType)  // if so, highlight the OPTIONS item
             {
                 case HAS_NO_SAVED_GAME:
+                    sCurrItemAndOptionMenuCheck = tMenuType + 1;
+                    break;
                 case HAS_SAVED_GAME:
                     sCurrItemAndOptionMenuCheck = tMenuType + 1;
                     break;
@@ -706,7 +722,10 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
         }
         sCurrItemAndOptionMenuCheck &= ~OPTION_MENU_FLAG;  // turn off the "returning from options menu" flag
         tCurrItem = sCurrItemAndOptionMenuCheck;
-        tItemCount = tMenuType + 2;
+        if (tMenuType == HAS_NO_SAVED_GAME)
+            tItemCount = 3; // NEW GAME, OPTION, LANGUAGE
+        else
+            tItemCount = tMenuType + 2;
     }
 }
 
@@ -802,14 +821,19 @@ static void Task_DisplayMainMenu(u8 taskId)
             default:
                 FillWindowPixelBuffer(0, PIXEL_FILL(0xA));
                 FillWindowPixelBuffer(1, PIXEL_FILL(0xA));
+                FillWindowPixelBuffer(2, PIXEL_FILL(0xA));
                 AddTextPrinterParameterized3(0, FONT_NORMAL, 0, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuNewGame);
                 AddTextPrinterParameterized3(1, FONT_NORMAL, 0, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuOption);
+                AddTextPrinterParameterized3(2, FONT_NORMAL, 0, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuLanguage);
                 PutWindowTilemap(0);
                 PutWindowTilemap(1);
+                PutWindowTilemap(2);
                 CopyWindowToVram(0, COPYWIN_GFX);
                 CopyWindowToVram(1, COPYWIN_GFX);
+                CopyWindowToVram(2, COPYWIN_GFX);
                 DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[0], MAIN_MENU_BORDER_TILE);
                 DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[1], MAIN_MENU_BORDER_TILE);
+                DrawMainMenuWindowBorder(&sWindowTemplates_MainMenu[2], MAIN_MENU_BORDER_TILE);
                 break;
             case HAS_SAVED_GAME:
                 FillWindowPixelBuffer(2, PIXEL_FILL(0xA));
@@ -983,6 +1007,9 @@ static void Task_HandleMainMenuAPressed(u8 taskId)
                     case 1:
                         action = ACTION_OPTION;
                         break;
+                    case 2:
+                        action = ACTION_LANGUAGE;
+                        break;    
                 }
                 break;
             case HAS_SAVED_GAME:
@@ -1087,6 +1114,11 @@ static void Task_HandleMainMenuAPressed(u8 taskId)
                 DestroyTask(taskId);
                 break;
             case ACTION_OPTION:
+                gMain.savedCallback = CB2_ReinitMainMenu;
+                SetMainCallback2(CB2_InitOptionMenu);
+                DestroyTask(taskId);
+                break;
+            case ACTION_LANGUAGE:
                 gMain.savedCallback = CB2_ReinitMainMenu;
                 SetMainCallback2(CB2_InitOptionMenu);
                 DestroyTask(taskId);
@@ -1203,6 +1235,9 @@ static void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 
                 case 1:
                     SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(1));
                     break;
+                case 2:
+                    SetGpuReg(REG_OFFSET_WIN0V, MENU_WIN_VCOORDS(7));
+                    break;    
             }
             break;
         case HAS_SAVED_GAME:
