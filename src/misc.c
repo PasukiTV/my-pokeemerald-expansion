@@ -150,6 +150,16 @@ static const struct WindowTemplate sMiscMenuWindowTemplateMain =
     .paletteNum = 15,
     .baseBlock = 1,
 };
+static const struct WindowTemplate sMiscMenuWindowTemplateFollower =
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = MISC_MENU_WIDTH_MAIN - 5,
+    .height = 2 * MISC_MENU_HEIGHT_MAIN,
+    .paletteNum = 15,
+    .baseBlock = 1,
+};
 
 // *******************************
 // List Menu Templates
@@ -225,7 +235,46 @@ static void Misc_ShowMenu(void (*HandleInput)(u8), struct ListMenuTemplate LMtem
     // draw everything
     CopyWindowToVram(windowId, COPYWIN_FULL);
 }
+static void Misc_ShowMenuFollower(void (*HandleInput)(u8), struct ListMenuTemplate LMtemplate)
+{
+    struct ListMenuTemplate menuTemplate;
+    u8 windowId;
+    u8 menuTaskId;
+    u8 inputTaskId;
 
+    // create window
+    HideMapNamePopUpWindow();
+    LoadMessageBoxAndBorderGfx();
+    windowId = AddWindow(&sMiscMenuWindowTemplateFollower);
+    DrawStdWindowFrame(windowId, FALSE);
+
+    // create list menu
+    menuTemplate = LMtemplate;
+    menuTemplate.maxShowed = MISC_MENU_HEIGHT_MAIN;
+    menuTemplate.windowId = windowId;
+    menuTemplate.header_X = 0;
+    menuTemplate.item_X = 8;
+    menuTemplate.cursor_X = 0;
+    menuTemplate.upText_Y = 1;
+    menuTemplate.cursorPal = 2;
+    menuTemplate.fillValue = 1;
+    menuTemplate.cursorShadowPal = 3;
+    menuTemplate.lettersSpacing = 1;
+    menuTemplate.itemVerticalPadding = 0;
+    menuTemplate.scrollMultiple = LIST_NO_MULTIPLE_SCROLL;
+    menuTemplate.fontId = MISC_MENU_FONT;
+    menuTemplate.cursorKind = 0;
+    menuTaskId = ListMenuInit(&menuTemplate, 0, 0);
+
+    // create input handler task
+    inputTaskId = CreateTask(HandleInput, 3);
+    gTasks[inputTaskId].tMenuTaskId = menuTaskId;
+    gTasks[inputTaskId].tWindowId = windowId;
+    gTasks[inputTaskId].tSubWindowId = 0;
+
+    // draw everything
+    CopyWindowToVram(windowId, COPYWIN_FULL);
+}
 static void Misc_DestroyMenu(u8 taskId)
 {
     DestroyListMenuTask(gTasks[taskId].tMenuTaskId, NULL, NULL);
@@ -316,8 +365,8 @@ static void MiscTask_HandleMenuInput_Followers(u8 taskId)
 // Open sub-menus
 static void MiscAction_OpenFollowersMenu(u8 taskId)
 {
-    Misc_DestroyMenu(taskId);
-    Misc_ShowMenu(MiscTask_HandleMenuInput_Followers, sMiscMenu_ListTemplate_Followers);
+    Misc_DestroyMenu_Full(taskId);
+    Misc_ShowMenuFollower(MiscTask_HandleMenuInput_Followers, sMiscMenu_ListTemplate_Followers);
 }
 
 // *******************************
@@ -347,31 +396,49 @@ static void MiscAction_Followers_Toggle(u8 taskId)
 
 static void MiscAction_Followers_1(u8 taskId)
 {
+    VarSet(VAR_FOLLOWER_INDEX, 0);
+    FlagClear(B_FLAG_FOLLOWERS_DISABLED);
+    UpdateFollowingPokemon();
     Misc_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }
 static void MiscAction_Followers_2(u8 taskId)
 {
+    VarSet(VAR_FOLLOWER_INDEX, 1);
+    FlagClear(B_FLAG_FOLLOWERS_DISABLED);
+    UpdateFollowingPokemon();
     Misc_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }
 static void MiscAction_Followers_3(u8 taskId)
 {
+    VarSet(VAR_FOLLOWER_INDEX, 2);
+    FlagClear(B_FLAG_FOLLOWERS_DISABLED);
+    UpdateFollowingPokemon();
     Misc_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }
 static void MiscAction_Followers_4(u8 taskId)
 {
+    VarSet(VAR_FOLLOWER_INDEX, 3);
+    FlagClear(B_FLAG_FOLLOWERS_DISABLED);
+    UpdateFollowingPokemon();
     Misc_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }
 static void MiscAction_Followers_5(u8 taskId)
 {
+    VarSet(VAR_FOLLOWER_INDEX, 4);
+    FlagClear(B_FLAG_FOLLOWERS_DISABLED);
+    UpdateFollowingPokemon();
     Misc_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }
 static void MiscAction_Followers_6(u8 taskId)
 {
+    VarSet(VAR_FOLLOWER_INDEX, 5);
+    FlagClear(B_FLAG_FOLLOWERS_DISABLED);
+    UpdateFollowingPokemon();
     Misc_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }
