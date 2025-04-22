@@ -2177,26 +2177,38 @@ static bool8 GetMonInfo(struct Pokemon *mon, u32 *species, bool32 *shiny, bool32
 }
 
 // Retrieve graphic information about the following pokemon, if any
+#define FOLLOWER_SLOT_AUTO 255
+
 static bool8 GetFollowerInfo(u32 *species, bool32 *shiny, bool32 *female)
 {
-    u8 slot = VarGet(VAR_FOLLOWER_INDEX); // vom Menü gesetzter Slot
+    u8 slot = VarGet(VAR_FOLLOWER_INDEX);
 
-    if (slot >= PARTY_SIZE)
-        return FALSE;
+    struct Pokemon *mon;
 
-    struct Pokemon *mon = &gPlayerParty[slot];
+    if (slot == FOLLOWER_SLOT_AUTO)
+    {
+        mon = GetFirstLiveMon(); // benutze alte Funktion
+        if (mon == NULL)
+            return FALSE;
+    }
+    else
+    {
+        if (slot >= PARTY_SIZE)
+            return FALSE;
+
+        mon = &gPlayerParty[slot];
+    }
 
     if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE)
         return FALSE;
-
     if (GetMonData(mon, MON_DATA_HP) == 0)
         return FALSE;
-
     if (GetMonData(mon, MON_DATA_IS_EGG))
         return FALSE;
 
     return GetMonInfo(mon, species, shiny, female);
 }
+
 
 // Update following pokemon if any
 void UpdateFollowingPokemon(void)

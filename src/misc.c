@@ -59,7 +59,8 @@ enum MiscMenu
 
 enum MiscFollowersMenu
 {
-    MISC_FOLLOWERS_MENU_ITEM_TOGGLE,
+    MISC_FOLLOWERS_MENU_ITEM_DEACTIVATED,
+    MISC_FOLLOWERS_MENU_ITEM_FIRST_ALIVE,
     MISC_FOLLOWERS_MENU_ITEM_1,
     MISC_FOLLOWERS_MENU_ITEM_2,
     MISC_FOLLOWERS_MENU_ITEM_3,
@@ -75,9 +76,12 @@ enum MiscFollowersMenu
 #define MISC_MENU_WIDTH_MAIN 17
 #define MISC_MENU_HEIGHT_MAIN 9
 
+#define FOLLOWER_SLOT_AUTO 255
+#define MISC_MAX_MENU_ITEMS 50
+
 // *******************************
 // Define functions
-static void Misc_ReShowMainMenu(void);
+//static void Misc_ReShowMainMenu(void);
 static void Misc_ShowMenu(void (*HandleInput)(u8), struct ListMenuTemplate LMtemplate);
 static void Misc_DestroyMenu(u8 taskId);
 static void Misc_DestroyMenu_Full(u8 taskId);
@@ -85,7 +89,9 @@ static void MiscAction_Cancel(u8 taskId);
 static void MiscAction_DestroyExtraWindow(u8 taskId);
 
 static void MiscAction_OpenFollowersMenu(u8 taskId);
-static void MiscAction_Followers_Toggle(u8 taskId);
+static void MiscAction_Followers_Deactivated(u8 taskId);
+static void MiscAction_Followers_First_Alive(u8 taskId);
+static void MiscAction_Followers_SetSlot(u8 taskId, u8 slot);
 static void MiscAction_Followers_1(u8 taskId);
 static void MiscAction_Followers_2(u8 taskId);
 static void MiscAction_Followers_3(u8 taskId);
@@ -97,6 +103,9 @@ static void MiscAction_Followers_6(u8 taskId);
 static void MiscTask_HandleMenuInput_Main(u8 taskId);
 static void MiscTask_HandleMenuInput_Followers(u8 taskId);
 
+extern const u8 Misc_Follower_Mode_Off_Message[];
+extern const u8 Misc_Follower_Mode_First_Alive_Message[];
+extern const u8 Misc_Follower_Mode_Slot_Message[];
 
 
 // *******************************
@@ -109,7 +118,8 @@ static const struct ListMenuItem sMiscMenu_Items_Main[] =
 
 static const struct ListMenuItem sMiscMenu_Items_Followers[] =
 {
-    [MISC_FOLLOWERS_MENU_ITEM_TOGGLE]       = {COMPOUND_STRING("Toggle Follower"),  MISC_FOLLOWERS_MENU_ITEM_TOGGLE},
+    [MISC_FOLLOWERS_MENU_ITEM_DEACTIVATED]  = {COMPOUND_STRING("Deactivated"),      MISC_FOLLOWERS_MENU_ITEM_DEACTIVATED},
+    [MISC_FOLLOWERS_MENU_ITEM_FIRST_ALIVE]  = {COMPOUND_STRING("First Alive"),      MISC_FOLLOWERS_MENU_ITEM_FIRST_ALIVE},
     [MISC_FOLLOWERS_MENU_ITEM_1]            = {COMPOUND_STRING("Positon 1"),        MISC_FOLLOWERS_MENU_ITEM_1},
     [MISC_FOLLOWERS_MENU_ITEM_2]            = {COMPOUND_STRING("Positon 2"),        MISC_FOLLOWERS_MENU_ITEM_2},
     [MISC_FOLLOWERS_MENU_ITEM_3]            = {COMPOUND_STRING("Positon 3"),        MISC_FOLLOWERS_MENU_ITEM_3},
@@ -125,11 +135,12 @@ static void (*const sMiscMenu_Actions_Main[])(u8) =
 {
     [MISC_MENU_ITEM_FOLLOWERS]      = MiscAction_OpenFollowersMenu,
     [MISC_MENU_ITEM_CANCEL]         = MiscAction_Cancel,
-}; 
+};
 
 static void (*const sMiscMenu_Actions_Followers[])(u8) =
 {
-    [MISC_FOLLOWERS_MENU_ITEM_TOGGLE]       = MiscAction_Followers_Toggle,
+    [MISC_FOLLOWERS_MENU_ITEM_DEACTIVATED]  = MiscAction_Followers_Deactivated,
+    [MISC_FOLLOWERS_MENU_ITEM_FIRST_ALIVE]  = MiscAction_Followers_First_Alive,
     [MISC_FOLLOWERS_MENU_ITEM_1]            = MiscAction_Followers_1,
     [MISC_FOLLOWERS_MENU_ITEM_2]            = MiscAction_Followers_2,
     [MISC_FOLLOWERS_MENU_ITEM_3]            = MiscAction_Followers_3,
@@ -184,10 +195,10 @@ void Misc_ShowMainMenu(void)
     Misc_ShowMenu(MiscTask_HandleMenuInput_Main, sMiscMenu_ListTemplate_Main);
 }
 
-static void Misc_ReShowMainMenu(void)
-{
-    Misc_ShowMenu(MiscTask_HandleMenuInput_Main, sMiscMenu_ListTemplate_Main);
-}
+// static void Misc_ReShowMainMenu(void)
+// {
+//     Misc_ShowMenu(MiscTask_HandleMenuInput_Main, sMiscMenu_ListTemplate_Main);
+// }
 
 #define tMenuTaskId   data[0]
 #define tWindowId     data[1]
@@ -231,6 +242,7 @@ static void Misc_ShowMenu(void (*HandleInput)(u8), struct ListMenuTemplate LMtem
     gTasks[inputTaskId].tMenuTaskId = menuTaskId;
     gTasks[inputTaskId].tWindowId = windowId;
     gTasks[inputTaskId].tSubWindowId = 0;
+    
 
     // draw everything
     CopyWindowToVram(windowId, COPYWIN_FULL);
@@ -296,6 +308,13 @@ static void Misc_DestroyMenu_Full(u8 taskId)
     UnfreezeObjectEvents();
 }
 
+static void Misc_DestroyMenu_Full_Script(u8 taskId, const u8 *script)
+{
+    Misc_DestroyMenu_Full(taskId);
+    LockPlayerFieldControls();
+    FreezeObjectEvents();
+    ScriptContext_SetupScript(script);
+}
 static void MiscAction_Cancel(u8 taskId)
 {
     Misc_DestroyMenu_Full(taskId);
@@ -356,6 +375,8 @@ static void MiscTask_HandleMenuInput_General(u8 taskId, const void (*const actio
     }
 }
 
+
+
 static void MiscTask_HandleMenuInput_Followers(u8 taskId)
 {
     MiscTask_HandleMenuInput_General(taskId, sMiscMenu_Actions_Followers, MiscTask_HandleMenuInput_Main, sMiscMenu_ListTemplate_Main);
@@ -369,76 +390,79 @@ static void MiscAction_OpenFollowersMenu(u8 taskId)
     Misc_ShowMenuFollower(MiscTask_HandleMenuInput_Followers, sMiscMenu_ListTemplate_Followers);
 }
 
+void ReopenFollowersMenu(void)
+{
+    Misc_ShowMenuFollower(MiscTask_HandleMenuInput_Followers, sMiscMenu_ListTemplate_Followers);
+}
 // *******************************
 // Actions Followers
 
-static void MiscAction_Followers_Toggle(u8 taskId)
+static void MiscAction_Followers_Deactivated(u8 taskId)
 {
     Misc_DestroyMenu_Full(taskId);
     struct ObjectEvent *followerObject = GetFollowerObject();
-
     if (followerObject && !FlagGet(B_FLAG_FOLLOWERS_DISABLED))
-    {
+    { 
         ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
         ObjectEventSetHeldMovement(followerObject, MOVEMENT_ACTION_ENTER_POKEBALL);
         CreateTask(Task_RemoveFollowerAfterAnim, 0);
         FlagSet(B_FLAG_FOLLOWERS_DISABLED);
-    }
-    else
+        Misc_DestroyMenu_Full_Script(taskId, Misc_Follower_Mode_Off_Message);
+    }else
     {
-        FlagClear(B_FLAG_FOLLOWERS_DISABLED);
-        ResetFollowerPositionHistory();
-        UpdateFollowingPokemon(); 
+        FlagSet(B_FLAG_FOLLOWERS_DISABLED);
+        Misc_DestroyMenu_Full_Script(taskId, Misc_Follower_Mode_Off_Message);
     }
     ScriptContext_Enable();
     return;
 }
 
-static void MiscAction_Followers_1(u8 taskId)
+static void MiscAction_Followers_First_Alive(u8 taskId)
 {
-    VarSet(VAR_FOLLOWER_INDEX, 0);
-    FlagClear(B_FLAG_FOLLOWERS_DISABLED);
-    UpdateFollowingPokemon();
     Misc_DestroyMenu_Full(taskId);
+    ResetFollowerPositionHistory();
+    struct ObjectEvent *followerObject = GetFollowerObject();
+    if (followerObject && !FlagGet(B_FLAG_FOLLOWERS_DISABLED))
+    { 
+        ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
+        ObjectEventSetHeldMovement(followerObject, MOVEMENT_ACTION_ENTER_POKEBALL);
+        CreateTask(Task_RemoveFollowerAfterAnim, 0);
+        VarSet(VAR_FOLLOWER_INDEX, FOLLOWER_SLOT_AUTO);
+        FlagClear(B_FLAG_FOLLOWERS_DISABLED);
+    }else
+    {
+        VarSet(VAR_FOLLOWER_INDEX, FOLLOWER_SLOT_AUTO);
+        FlagClear(B_FLAG_FOLLOWERS_DISABLED);
+    }    
+    Misc_DestroyMenu_Full_Script(taskId, Misc_Follower_Mode_First_Alive_Message);
+    UpdateFollowingPokemon();
     ScriptContext_Enable();
+    return;
 }
-static void MiscAction_Followers_2(u8 taskId)
+
+static void MiscAction_Followers_1(u8 taskId) { MiscAction_Followers_SetSlot(taskId, 0); }
+static void MiscAction_Followers_2(u8 taskId) { MiscAction_Followers_SetSlot(taskId, 1); }
+static void MiscAction_Followers_3(u8 taskId) { MiscAction_Followers_SetSlot(taskId, 2); }
+static void MiscAction_Followers_4(u8 taskId) { MiscAction_Followers_SetSlot(taskId, 3); }
+static void MiscAction_Followers_5(u8 taskId) { MiscAction_Followers_SetSlot(taskId, 4); }
+static void MiscAction_Followers_6(u8 taskId) { MiscAction_Followers_SetSlot(taskId, 5); }
+
+static void MiscAction_Followers_SetSlot(u8 taskId, u8 slot)
 {
-    VarSet(VAR_FOLLOWER_INDEX, 1);
-    FlagClear(B_FLAG_FOLLOWERS_DISABLED);
-    UpdateFollowingPokemon();
     Misc_DestroyMenu_Full(taskId);
-    ScriptContext_Enable();
-}
-static void MiscAction_Followers_3(u8 taskId)
-{
-    VarSet(VAR_FOLLOWER_INDEX, 2);
+    ResetFollowerPositionHistory();
+
+    struct ObjectEvent *followerObject = GetFollowerObject();
+    if (followerObject && !FlagGet(B_FLAG_FOLLOWERS_DISABLED))
+    {
+        ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
+        ObjectEventSetHeldMovement(followerObject, MOVEMENT_ACTION_ENTER_POKEBALL);
+        CreateTask(Task_RemoveFollowerAfterAnim, 0);
+    }
+
+    VarSet(VAR_FOLLOWER_INDEX, slot);
     FlagClear(B_FLAG_FOLLOWERS_DISABLED);
+    Misc_DestroyMenu_Full_Script(taskId, Misc_Follower_Mode_Slot_Message);
     UpdateFollowingPokemon();
-    Misc_DestroyMenu_Full(taskId);
-    ScriptContext_Enable();
-}
-static void MiscAction_Followers_4(u8 taskId)
-{
-    VarSet(VAR_FOLLOWER_INDEX, 3);
-    FlagClear(B_FLAG_FOLLOWERS_DISABLED);
-    UpdateFollowingPokemon();
-    Misc_DestroyMenu_Full(taskId);
-    ScriptContext_Enable();
-}
-static void MiscAction_Followers_5(u8 taskId)
-{
-    VarSet(VAR_FOLLOWER_INDEX, 4);
-    FlagClear(B_FLAG_FOLLOWERS_DISABLED);
-    UpdateFollowingPokemon();
-    Misc_DestroyMenu_Full(taskId);
-    ScriptContext_Enable();
-}
-static void MiscAction_Followers_6(u8 taskId)
-{
-    VarSet(VAR_FOLLOWER_INDEX, 5);
-    FlagClear(B_FLAG_FOLLOWERS_DISABLED);
-    UpdateFollowingPokemon();
-    Misc_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }

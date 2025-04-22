@@ -1,0 +1,77 @@
+script Misc_MessageEnd{
+	waitmessage
+	waitbuttonpress
+	releaseall
+	end
+}
+
+script Misc_Follower_Mode_Off_Message{
+	msgbox (Misc_Follower_Mode_Off_Message_Text)
+	goto (Misc_MessageEnd)
+}
+
+text Misc_Follower_Mode_Off_Message_Text{
+	"Follower Mode set to!\n"
+	"Follower deactivated$"
+}
+
+script Misc_Follower_Mode_First_Alive_Message{
+	msgbox (Misc_Follower_Mode_First_Alive_Message_Text)
+	goto (Misc_MessageEnd)
+}
+
+text Misc_Follower_Mode_First_Alive_Message_Text{
+	"Follower Mode set to!\n"
+	"First Alive Pokemon in Team$"
+}
+
+script Misc_Follower_Mode_Slot_Message{
+	switch (var(VAR_FOLLOWER_INDEX))
+	{
+		case 0:
+			msgbox(Misc_Follower_Mode_Slot_1_Message_Text)
+		case 1:
+			msgbox(Misc_Follower_Mode_Slot_2_Message_Text)
+		case 2:
+			msgbox(Misc_Follower_Mode_Slot_3_Message_Text)
+		case 3:
+			msgbox(Misc_Follower_Mode_Slot_4_Message_Text)
+		case 4:
+			msgbox(Misc_Follower_Mode_Slot_5_Message_Text)
+		case 5:
+			msgbox(Misc_Follower_Mode_Slot_6_Message_Text)
+	}
+	goto (Misc_MessageEnd)
+}
+
+text Misc_Follower_Mode_Slot_1_Message_Text{
+	"Follower Mode set to!\n"
+	"The first Pokémon in your party is now following you$"
+}
+
+text Misc_Follower_Mode_Slot_2_Message_Text{
+	"Follower Mode set to!\n"
+	"The second Pokémon in your party is now following you$"
+}
+
+text Misc_Follower_Mode_Slot_3_Message_Text{
+	"Follower Mode set to!\n"
+	"The third Pokémon in your party is now following you$"
+}
+
+text Misc_Follower_Mode_Slot_4_Message_Text{
+	"Follower Mode set to!\n"
+	"The fourth Pokémon in your party is now following you$"
+}
+
+text Misc_Follower_Mode_Slot_5_Message_Text{
+	"Follower Mode set to!\n"
+	"The fifth Pokémon in your party is now following you$"
+}
+
+text Misc_Follower_Mode_Slot_6_Message_Text{
+	"Follower Mode set to!\n"
+	"The sixth Pokémon in your party is now following you$"
+}
+
+
