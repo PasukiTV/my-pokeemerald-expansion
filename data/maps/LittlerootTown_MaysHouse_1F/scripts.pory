@@ -322,91 +322,100 @@ LittlerootTown_MaysHouse_1F_Movement_MayGoUpstairs2:
 	walk_up
 	step_end
 
-RivalsHouse_1F_Text_OhYoureTheNewNeighbor:
-	.string "Oh, hello. And you are?\p"
-	.string "… … … … … … … … …\n"
-	.string "… … … … … … … … …\p"
-	.string "Oh, you're {PLAYER}{KUN}, our new next-door\n"
-	.string "neighbor! Hi!\p"
-	.string "We have a {STR_VAR_1} about the same\n"
-	.string "age as you.\p"
-	.string "Our {STR_VAR_1} was excited about making\n"
-	.string "a new friend.\p"
-	.string "Our {STR_VAR_1} is upstairs, I think.$"
-
-RivalsHouse_1F_Text_LikeChildLikeFather:
-	.string "Like child, like father.\p"
-	.string "My husband is as wild about POKéMON\n"
-	.string "as our child.\p"
-	.string "If he's not at his LAB, he's likely\n"
-	.string "scrabbling about in grassy places.$"
-
-RivalsHouse_1F_Text_TooBusyToNoticeVisit:
-	.string "That {RIVAL}!\p"
-	.string "I guess our child is too busy with\n"
-	.string "POKéMON to notice that you came\l"
-	.string "to visit, {PLAYER}{KUN}.$"
-
-RivalsHouse_1F_Text_WentOutToRoute103:
-	.string "Oh, {RIVAL} went out to ROUTE 103\n"
-	.string "just a little while ago.\p"
-	.string "Like father, like child.\n"
-	.string "{RIVAL} can't stay quietly at home.$"
-
-RivalsHouse_1F_Text_ShouldGoHomeEverySoOften:
-	.string "I think it's wonderful for people to\n"
-	.string "travel with POKéMON.\p"
-	.string "But you should go home every so often\n"
-	.string "to let your mother know you're okay.\p"
-	.string "She might not say it, but I'm sure she\n"
-	.string "worries about you, {PLAYER}{KUN}.$"
-
-RivalsHouse_1F_Text_MayWhoAreYou:
-	.string "Huh?\n"
-	.string "Who… Who are you?\p"
-	.string "… … … … … … … …\n"
-	.string "… … … … … … … …\p"
-	.string "Oh, you're {PLAYER}{KUN}.\n"
-	.string "So your move was today.\p"
-	.string "Um… I'm MAY.\n"
-	.string "Glad to meet you!\p"
-	.string "I…\n"
-	.string "I have this dream of becoming friends\l"
-	.string "with POKéMON all over the world.\p"
-	.string "I… I heard about you, {PLAYER}{KUN}, from\n"
-	.string "my dad, PROF. BIRCH.\p"
-	.string "I was hoping that you would be nice,\n"
-	.string "{PLAYER}{KUN}, and that we could be friends.\p"
-	.string "Oh, this is silly, isn't it?\n"
-	.string "I… I've just met you, {PLAYER}{KUN}.\p"
-	.string "Eheheh…\p"
-	.string "Oh, no! I forgot!\p"
-	.string "I was supposed to go help Dad catch\n"
-	.string "some wild POKéMON!\p"
-	.string "{PLAYER}{KUN}, I'll catch you later!$"
-
-RivalsHouse_1F_Text_BrendanWhoAreYou:
-	.string "Hey!\n"
-	.string "You…\p"
-	.string "Who are you?\p"
-	.string "Oh, you're {PLAYER}, aren't you?\n"
-	.string "Moved in next door, right?\p"
-	.string "I didn't know that you're a girl.\p"
-	.string "Dad, PROF. BIRCH, said that our new\n"
-	.string "next-door neighbor is a GYM LEADER's\l"
-	.string "kid, so I assumed you'd be a guy.\p"
-	.string "My name's BRENDAN.\n"
-	.string "So, hi, neighbor!\p"
-	.string "Huh? Hey, {PLAYER}, don't you have\n"
-	.string "a POKéMON?\p"
-	.string "Do you want me to go catch you one?\p"
-	.string "Aw, darn, I forgot…\p"
-	.string "I'm supposed to go help my dad catch\n"
-	.string "some wild POKéMON.\p"
-	.string "Some other time, okay?$"
-
-RivalsHouse_1F_Text_DoYouHavePokemon:
-	.string "Hi, neighbor!\p"
-	.string "Do you already have your\n"
-	.string "own POKéMON?$"
 `
+
+text RivalsHouse_1F_Text_OhYoureTheNewNeighbor {
+	"Oh, hallo. Und du bist…?\p"
+	"… … … … … … … … …\n"
+	"… … … … … … … … …\p"
+	"Oh, du bist {PLAYER}{KUN}, unser neuer\n"
+	"Nachbar! Hallo!\p"
+	"Wir haben ein {STR_VAR_1} in deinem Alter.\p"
+	"Unser {STR_VAR_1} freut sich schon darauf,\n"
+	"einen neuen Freund zu finden.\p"
+	"{STR_VAR_1} ist, glaube ich, oben.$"
+}
+
+text RivalsHouse_1F_Text_LikeChildLikeFather {
+	"Wie der Vater, so das Kind.\p"
+	"Mein Mann ist genauso verrückt nach\n"
+	"POKéMON wie unser Kind.\p"
+"Wenn er nicht im LABOR ist, stromert er\n"
+"in hohem Gras herum.$"
+}
+
+text RivalsHouse_1F_Text_TooBusyToNoticeVisit {
+	"Dieser {RIVAL}…\p"
+	"Ich glaube, unser Kind ist zu sehr mit\n"
+	"den POKéMON beschäftigt, um zu merken,\l"
+	"dass du da warst, {PLAYER}{KUN}.$"
+}
+
+text RivalsHouse_1F_Text_WentOutToRoute103 {
+	"Oh, {RIVAL} ist vor Kurzem auf ROUTE 103\n"
+	"gegangen.\p"
+	"Wie der Vater, so das Kind.\n"
+	"{RIVAL} kann einfach nicht still zu Hause bleiben.$"
+}
+
+text RivalsHouse_1F_Text_ShouldGoHomeEverySoOften {
+	"Ich finde es toll, dass Menschen mit\n"
+	"ihren POKéMON reisen.\p"
+	"Aber man sollte ab und zu zu Hause\n"
+	"vorbeischauen, damit die Mutter weiß,\l"
+	"dass es einem gut geht.\p"
+	"Auch wenn sie es nicht sagt, macht sie\n"
+	"sich bestimmt Sorgen um dich, {PLAYER}{KUN}.$"
+}
+
+text RivalsHouse_1F_Text_MayWhoAreYou {
+	"Hä?\n"
+	"Wer… wer bist du?\p"
+	"… … … … … … … …\n"
+	"… … … … … … … …\p"
+	"Oh, du bist {PLAYER}{KUN}.\n"
+	"Ihr seid also heute eingezogen.\p"
+	"Ähm… ich bin MAIKE.\n"
+	"Schön, dich kennenzulernen!\p"
+	"Ich habe den Traum, mit POKéMON aus\n"
+	"aller Welt Freundschaft zu schließen.\p"
+	"Ich… Ich habe von dir gehört, {PLAYER}{KUN},\n"
+	"von meinem Vater, PROF. BIRK.\p"
+	"Ich hatte gehofft, dass du nett bist,\n"
+	"{PLAYER}{KUN}, und dass wir Freunde werden.\p"
+	"Oh, das ist albern, oder?\n"
+	"Ich kenne dich ja kaum, {PLAYER}{KUN}.\p"
+	"Eheheh…\p"
+	"Oh nein! Ich habe ganz vergessen!\p"
+	"Ich sollte meinem Vater helfen,\n"
+	"wilde POKéMON zu fangen!\p"
+	"{PLAYER}{KUN}, wir sehen uns später!$"
+}
+
+text RivalsHouse_1F_Text_BrendanWhoAreYou {
+	"He!\n"
+	"Du…\p"
+	"Wer bist du?\p"
+	"Oh, du bist {PLAYER}, oder?\n"
+	"Du bist der neue Nachbar?\p"
+	"Ich wusste gar nicht, dass du ein Mädchen bist.\p"
+	"Mein Vater, PROF. BIRK, meinte,\n"
+	"unser neuer Nachbar sei das Kind\l"
+	"eines ARENALEITERS. Ich dachte also,\l"
+	"du wärst ein Junge.\p"
+	"Ich heiße BRENDAN.\n"
+	"Na dann, hallo Nachbarin!\p"
+	"Hm? Hey, {PLAYER}, hast du etwa\n"
+	"kein eigenes POKéMON?\p"
+	"Soll ich dir eins fangen?\p"
+	"Oh, Mist, ich hab was vergessen…\p"
+	"Ich sollte meinem Vater helfen,\n"
+	"wilde POKéMON zu fangen.\p"
+	"Ein andermal, okay?$"
+}
+
+text RivalsHouse_1F_Text_DoYouHavePokemon {
+	"Hallo, Nachbarin!\p"
+	"Hast du schon dein eigenes\n"
+	"POKéMON?$"
+}

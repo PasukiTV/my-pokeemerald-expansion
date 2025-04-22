@@ -274,34 +274,39 @@ PlayersHouse_2F_EventScript_GameCube::
 	msgbox PlayersHouse_2F_Text_ItsAGameCube, MSGBOX_SIGN
 	end
 
-PlayersHouse_2F_Text_ClockIsStopped:
-	.string "The clock is stopped…\p"
-	.string "Better set it and start it!$"
-
-PlayersHouse_2F_Text_HowDoYouLikeYourRoom:
-	.string "MOM: {PLAYER}, how do you like your\n"
-	.string "new room?\p"
-	.string "Good! Everything's put away neatly!\p"
-	.string "They finished moving everything in\n"
-	.string "downstairs, too.\p"
-	.string "POKéMON movers are so convenient!\p"
-	.string "Oh, you should make sure that\n"
-	.string "everything's all there on your desk.$"
-
-PlayersHouse_2F_Text_Notebook:
-	.string "{PLAYER} flipped open the notebook.\p"
-	.string "ADVENTURE RULE NO. 1\n"
-	.string "Open the MENU with START.\p"
-	.string "ADVENTURE RULE NO. 2\n"
-	.string "Record your progress with SAVE.\p"
-	.string "The remaining pages are blank…$"
-
-Common_Text_LookCloserAtMap:
-	.string "{PLAYER} took a closer look at the\n"
-	.string "HOENN region map.$"
-
-PlayersHouse_2F_Text_ItsAGameCube:
-	.string "It's a Nintendo GameCube.\p"
-	.string "A Game Boy Advance is connected to\n"
-	.string "serve as the Controller.$"
 `
+
+text PlayersHouse_2F_Text_ClockIsStopped {
+    "Die Uhr ist stehen geblieben…\p"
+    "Stell sie besser ein und starte sie!$"
+}
+
+text PlayersHouse_2F_Text_HowDoYouLikeYourRoom {
+    "MAMA: {PLAYER}, wie gefällt dir dein\n"
+    "neues Zimmer?\p"
+    "Schön! Alles ist ordentlich aufgeräumt!\p"
+    "Unten ist auch schon alles fertig.\p"
+    "POKéMON-Umzugshelfer sind wirklich praktisch!\p"
+    "Ach, du solltest nachsehen,\n"
+    "ob auf deinem Schreibtisch alles da ist.$"
+}
+
+text PlayersHouse_2F_Text_Notebook {
+    "{PLAYER} schlägt das Notizbuch auf.\p"
+    "ABENTEUER-REGEL NR. 1\n"
+    "Öffne das MENÜ mit START.\p"
+    "ABENTEUER-REGEL NR. 2\n"
+    "Speichere deinen Fortschritt mit SPEICHERN.\p"
+    "Die restlichen Seiten sind leer…$"
+}
+
+text Common_Text_LookCloserAtMap {
+    "{PLAYER} sieht sich die Karte\n"
+    "der HOENN-Region genauer an.$"
+}
+
+text PlayersHouse_2F_Text_ItsAGameCube {
+    "Es ist ein Nintendo GameCube.\p"
+    "Ein Game Boy Advance ist als\n"
+    "Controller angeschlossen.$"
+}

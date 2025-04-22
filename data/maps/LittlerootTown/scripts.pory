@@ -205,9 +205,10 @@ script LittlerootTown_EventScript_FatMan {
 }
 
 text LittlerootTown_Text_CanUsePCToStoreItems {
-    "If you use a PC, you can store items\n"
-    "and POKéMON.\p"
-    "The power of science is staggering!"
+    "Wenn du einen PC benutzt, kannst du\n"
+    "Items und POKéMON lagern.\p"
+    "Die Wissenschaft macht unglaubliche\n"
+    "Fortschritte!"
 }
 
 script LittlerootTown_EventScript_Boy {
@@ -228,11 +229,11 @@ script LittlerootTown_EventScript_Boy {
 }
 
 text LittlerootTown_Text_BirchSpendsDaysInLab {
-	"PROF. BIRCH spends days in his LAB\n"
-	"studying, then he'll suddenly go out in\l"
-	"the wild to do more research…\p"
-	"When does PROF. BIRCH spend time\n"
-	"at home?$"
+    "PROF. BIRK verbringt den ganzen Tag\n"
+    "im LABOR mit seinen Studien und geht\l"
+    "plötzlich in die freie Natur, um weiter\n"
+    "zu forschen…\p"
+    "Wann ist PROF. BIRK denn mal zu Hause?$"
 }
 
 script LittlerootTown_EventScript_Twin{
@@ -391,35 +392,35 @@ movement PlayerPushBack {
     step_end
 }
 
-text LittlerootTown_Text_DangerousIfYouDontHavePokemon{
-	"It's dangerous if you don't have\n"
-	"your own POKéMON.$"
+text LittlerootTown_Text_DangerousIfYouDontHavePokemon {
+    "Es ist gefährlich, wenn du keine\n"
+    "eigenen POKéMON hast.$"
 }
 
-text LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut{
-	"Um, um, um!\p"
-	"If you go outside and go in the grass,\n"
-	"wild POKéMON will jump out!$"
-	}
-
-text LittlerootTown_Text_GoodLuckCatchingPokemon{
-	"Are you going to catch POKéMON?\n"
-	"Good luck!$"
+text LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut {
+    "Ähm, ähm, ähm!\p"
+    "Wenn du rausgehst und ins hohe Gras\n"
+    "gehst, springen wilde POKéMON heraus!$"
 }
 
-text LittlerootTown_Text_YouSavedBirch{
-	"You saved PROF. BIRCH!\n"
-	"I'm so glad!$"
+text LittlerootTown_Text_GoodLuckCatchingPokemon {
+    "Willst du POKéMON fangen?\n"
+    "Viel Glück!$"
 }
 
-text LittlerootTown_Text_CanYouGoSeeWhatsHappening{
-	"Um, hi!\p"
-	"There are scary POKéMON outside!\n"
-	"I can hear their cries!\p"
-	"I want to go see what's going on,\n"
-	"but I don't have any POKéMON…\p"
-	"Can you go see what's happening\n"
-	"for me?$"
+text LittlerootTown_Text_YouSavedBirch {
+    "Du hast PROF. BIRK gerettet!\n"
+    "Ich bin so froh!$"
+}
+
+text LittlerootTown_Text_CanYouGoSeeWhatsHappening {
+    "Ähm, hallo!\p"
+    "Draußen sind unheimliche POKéMON!\n"
+    "Ich kann ihre Schreie hören!\p"
+    "Ich möchte nachsehen, was da los ist,\n"
+    "aber ich habe keine POKéMON…\p"
+    "Kannst du für mich nachsehen,\n"
+    "was dort passiert?$"
 }
 
 // Town Signs
@@ -429,9 +430,9 @@ script LittlerootTown_EventScript_TownSign{
 	end
 }
 
-text LittlerootTown_Text_TownSign{
-	"LITTLEROOT TOWN\n"
-	"“A town that can't be shaded any hue.”$"
+text LittlerootTown_Text_TownSign {
+    "WURZELHEIM\n"
+    "Ein Ort, der keinen Schatten kennt.$"
 }
 
 script LittlerootTown_EventScript_BirchsLabSign{
@@ -439,8 +440,8 @@ script LittlerootTown_EventScript_BirchsLabSign{
 	end
 }
 
-text LittlerootTown_Text_ProfBirchsLab{
-	"PROF. BIRCH'S POKéMON LAB$"
+text LittlerootTown_Text_ProfBirchsLab {
+    "POKéMON-LABOR von PROF. BIRK$"
 }
 
 script LittlerootTown_EventScript_BrendansHouseSign{
@@ -481,12 +482,12 @@ script LittlerootTown_EventScript_PlayersHouseSignFemale{
 	return
 }
 
-text LittlerootTown_Text_PlayersHouse{
-	"{PLAYER}'s HOUSE$"
+text LittlerootTown_Text_PlayersHouse {
+    "Haus von {PLAYER}$"
 }
 
-text LittlerootTown_Text_ProfBirchsHouse{
-	"PROF. BIRCH'S HOUSE$"
+text LittlerootTown_Text_ProfBirchsHouse {
+    "Haus von PROF. BIRK$"
 }
 
 //Get Running Shoes from Mum
@@ -798,54 +799,58 @@ script LittlerootTown_EventScript_GiveRunningShoes{
 }
 
 text LittlerootTown_Text_WaitPlayer {
-    "MOM: Wait, {PLAYER}!"
+    "MAMA: Warte, {PLAYER}!"
 }
 
 text LittlerootTown_Text_WearTheseRunningShoes {
-    "MOM: {PLAYER}! {PLAYER}! Did you\n"
-    "introduce yourself to PROF. BIRCH?\p"
-    "Oh! What an adorable POKéMON!\n"
-    "You got it from PROF. BIRCH. How nice!\p"
-    "You're your father's child, all right.\n"
-    "You look good together with POKéMON!\p"
-    "Here, honey! If you're going out on an\n"
-    "adventure, wear these RUNNING SHOES.\p"
-    "They'll put a zip in your step!"
+    "MAMA: {PLAYER}! {PLAYER}! Hast du dich\n"
+    "PROF. BIRK vorgestellt?\p"
+    "Oh! Was für ein niedliches POKéMON!\n"
+    "Du hast es von PROF. BIRK bekommen.\p"
+    "Wie nett! Du bist ganz das Kind deines\n"
+    "Vaters. Du und das POKéMON, ihr passt\n"
+    "wirklich gut zusammen!\p"
+    "Hier, mein Schatz! Wenn du draußen\n"
+    "unterwegs bist, trag diese LAUFSCHUHE.\p"
+    "Damit bist du viel flotter unterwegs!"
 }
 
 text LittlerootTown_Text_SwitchShoesWithRunningShoes {
-    "{PLAYER} switched shoes with the\n"
-    "RUNNING SHOES."
+    "{PLAYER} tauschte die Schuhe gegen die\n"
+    "LAUFSCHUHE aus."
 }
 
 text LittlerootTown_Text_ExplainRunningShoes {
-    "MOM: {PLAYER}, those shoes came with\n"
-    "instructions.\p"
-    "“Press the B Button while wearing these\n"
-    "RUNNING SHOES to run extra-fast!\p"
-    "“Slip on these RUNNING SHOES and race\n"
-    "in the great outdoors!”"
+    "MAMA: {PLAYER}, zu diesen Schuhen\n"
+    "gab es eine Anleitung.\p"
+    "Halte während des Laufens den B-Knopf\n"
+    "gedrückt, um zu rennen.\p"
+    "Zieh die LAUFSCHUHE an und lauf los\n"
+    "in die große, weite Welt!“"
 }
 
 text LittlerootTown_Text_ComeHomeIfAnythingHappens {
     "… … … … … … … …\n"
     "… … … … … … … …\p"
-    "To think that you have your very own\n"
-    "POKéMON now…\l"
-    "Your father will be overjoyed.\p"
-    "…But please be careful.\n"
-    "If anything happens, you can come home.\p"
-    "Go on, go get them, honey!"
+    "Kaum zu glauben, dass du jetzt dein\n"
+    "ganz eigenes POKéMON hast…\l"
+    "Dein Vater wird überglücklich sein.\p"
+    "…Aber sei bitte vorsichtig.\n"
+    "Wenn etwas ist, kannst du immer nach\n"
+    "Hause kommen.\p"
+    "Los, zeig allen, was du drauf hast,\n"
+    "mein Schatz!"
 }
 
-text LittlerootTown_Text_BirchSomethingToShowYouAtLab{
-	"PROF. BIRCH: Well, well, {PLAYER}{KUN}!\n"
-	"That was good work out there!\p"
-	"I knew there was something special\n"
-	"about you when I first saw you,\l"
-	"but I never expected this.\p"
-	"Oh, yes. Do you still have the POKéDEX\n"
-	"I gave you?\p"
-	"I have something to show you.\n"
-	"Let's go to my LAB.$"
+text LittlerootTown_Text_BirchSomethingToShowYouAtLab {
+    "PROF. BIRK: Na, na, {PLAYER}{KUN}!\n"
+    "Das war gute Arbeit da draußen!\p"
+    "Ich wusste schon beim ersten Anblick,\n"
+    "dass du etwas Besonderes bist.\p"
+    "Aber dass du das so gut meisterst,\n"
+    "hätte ich nicht erwartet.\p"
+    "Ach ja… Hast du noch den POKéDEX,\n"
+    "den ich dir gegeben habe?\p"
+    "Ich möchte dir etwas zeigen.\n"
+    "Lass uns in mein LABOR gehen.$"
 }

@@ -548,65 +548,38 @@ PlayersHouse_2F_EventScript_GameCube::
 	msgbox PlayersHouse_2F_Text_ItsAGameCube, MSGBOX_SIGN
 # 275 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
 	end
-# 276 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
 
-# 277 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-PlayersHouse_2F_Text_ClockIsStopped:
-# 278 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "The clock is stopped…\p"
+PlayersHouse_2F_Text_ClockIsStopped::
 # 279 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "Better set it and start it!$"
-# 280 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
+	.string "Die Uhr ist stehen geblieben…\p"
+	.string "Stell sie besser ein und starte sie!$"
 
-# 281 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-PlayersHouse_2F_Text_HowDoYouLikeYourRoom:
-# 282 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "MOM: {PLAYER}, how do you like your\n"
-# 283 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "new room?\p"
+PlayersHouse_2F_Text_HowDoYouLikeYourRoom::
 # 284 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "Good! Everything's put away neatly!\p"
-# 285 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "They finished moving everything in\n"
-# 286 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "downstairs, too.\p"
-# 287 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "POKéMON movers are so convenient!\p"
-# 288 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "Oh, you should make sure that\n"
-# 289 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "everything's all there on your desk.$"
-# 290 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
+	.string "MAMA: {PLAYER}, wie gefällt dir dein\n"
+	.string "neues Zimmer?\p"
+	.string "Schön! Alles ist ordentlich aufgeräumt!\p"
+	.string "Unten ist auch schon alles fertig.\p"
+	.string "POKéMON-Umzugshelfer sind wirklich praktisch!\p"
+	.string "Ach, du solltest nachsehen,\n"
+	.string "ob auf deinem Schreibtisch alles da ist.$"
 
-# 291 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-PlayersHouse_2F_Text_Notebook:
-# 292 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "{PLAYER} flipped open the notebook.\p"
-# 293 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "ADVENTURE RULE NO. 1\n"
+PlayersHouse_2F_Text_Notebook::
 # 294 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "Open the MENU with START.\p"
-# 295 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "ADVENTURE RULE NO. 2\n"
-# 296 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "Record your progress with SAVE.\p"
-# 297 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "The remaining pages are blank…$"
-# 298 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
+	.string "{PLAYER} schlägt das Notizbuch auf.\p"
+	.string "ABENTEUER-REGEL NR. 1\n"
+	.string "Öffne das MENÜ mit START.\p"
+	.string "ABENTEUER-REGEL NR. 2\n"
+	.string "Speichere deinen Fortschritt mit SPEICHERN.\p"
+	.string "Die restlichen Seiten sind leer…$"
 
-# 299 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-Common_Text_LookCloserAtMap:
-# 300 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "{PLAYER} took a closer look at the\n"
-# 301 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "HOENN region map.$"
-# 302 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-
+Common_Text_LookCloserAtMap::
 # 303 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-PlayersHouse_2F_Text_ItsAGameCube:
-# 304 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "It's a Nintendo GameCube.\p"
-# 305 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "A Game Boy Advance is connected to\n"
-# 306 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
-	.string "serve as the Controller.$"
+	.string "{PLAYER} sieht sich die Karte\n"
+	.string "der HOENN-Region genauer an.$"
+
+PlayersHouse_2F_Text_ItsAGameCube::
+# 308 "data/maps/LittlerootTown_BrendansHouse_2F/scripts.pory"
+	.string "Es ist ein Nintendo GameCube.\p"
+	.string "Ein Game Boy Advance ist als\n"
+	.string "Controller angeschlossen.$"
