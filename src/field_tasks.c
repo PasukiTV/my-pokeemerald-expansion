@@ -21,6 +21,9 @@
 #include "constants/songs.h"
 #include "constants/metatile_labels.h"
 #include "event_object_movement.h"
+#include <stdint.h>
+#include "misc.h"
+
 
 /*  This file handles some persistent tasks that run in the overworld.
  *  - Task_RunTimeBasedEvents: Periodically updates local time and RTC events. Also triggers ambient cries.
@@ -967,4 +970,38 @@ void Task_RemoveFollowerAfterAnim(u8 taskId)
         RemoveFollowingPokemon();
         DestroyTask(taskId);
     }
+}
+
+#define tTimer data[0]
+#define tSlot  data[1]
+#define tMsg   data[2]
+
+void Misc_DestroyMenu_Full_Script(u8 taskId, const u8 *script);
+
+
+#define tTimer data[0]
+#define tFollowerSlot data[1]
+// kein define für data[2], weil wir es als Zeiger mit Set/GetWordTaskArg behandeln
+
+
+void Task_RemoveFollowerAfterAnimAndUpdateFollower(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+
+    if (++task->tTimer >= 30)
+    {
+        RemoveFollowingPokemon();
+
+        VarSet(VAR_FOLLOWER_INDEX, task->tFollowerSlot);
+        FlagClear(B_FLAG_FOLLOWERS_DISABLED);
+
+        UpdateFollowingPokemon();
+
+        const u8 *script = (const u8 *)GetWordTaskArg(taskId, 2);
+        if (script != NULL)
+            ScriptContext_SetupScript(script);
+
+        DestroyTask(taskId);
+    }
+    ScriptContext_Enable();
 }

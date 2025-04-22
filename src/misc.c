@@ -308,7 +308,7 @@ static void Misc_DestroyMenu_Full(u8 taskId)
     UnfreezeObjectEvents();
 }
 
-static void Misc_DestroyMenu_Full_Script(u8 taskId, const u8 *script)
+void Misc_DestroyMenu_Full_Script(u8 taskId, const u8 *script)
 {
     Misc_DestroyMenu_Full(taskId);
     LockPlayerFieldControls();
@@ -421,24 +421,30 @@ static void MiscAction_Followers_First_Alive(u8 taskId)
 {
     Misc_DestroyMenu_Full(taskId);
     ResetFollowerPositionHistory();
+
     struct ObjectEvent *followerObject = GetFollowerObject();
-    if (followerObject && !FlagGet(B_FLAG_FOLLOWERS_DISABLED))
-    { 
+
+    if (followerObject && !FlagGet(B_FLAG_FOLLOWERS_DISABLED) && GetFirstLiveMon() != NULL)
+    {
+        // Spielt die Pokéball-Animation ab, wenn bereits ein Follower da ist
         ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
         ObjectEventSetHeldMovement(followerObject, MOVEMENT_ACTION_ENTER_POKEBALL);
-        CreateTask(Task_RemoveFollowerAfterAnim, 0);
-        VarSet(VAR_FOLLOWER_INDEX, FOLLOWER_SLOT_AUTO);
-        FlagClear(B_FLAG_FOLLOWERS_DISABLED);
-    }else
-    {
-        VarSet(VAR_FOLLOWER_INDEX, FOLLOWER_SLOT_AUTO);
-        FlagClear(B_FLAG_FOLLOWERS_DISABLED);
-    }    
+
+        u8 taskId = CreateTask(Task_RemoveFollowerAfterAnimAndUpdateFollower, 0);
+        gTasks[taskId].data[1] = FOLLOWER_SLOT_AUTO; // Slot
+        SetWordTaskArg(taskId, 2, (uintptr_t)Misc_Follower_Mode_First_Alive_Message); // Nachricht-Zeiger
+
+        return; // Erst Animation abspielen
+    }
+
+    // Kein Follower oder keine Animation nötig – direkt ausführen
+    VarSet(VAR_FOLLOWER_INDEX, FOLLOWER_SLOT_AUTO);
+    FlagClear(B_FLAG_FOLLOWERS_DISABLED);
     Misc_DestroyMenu_Full_Script(taskId, Misc_Follower_Mode_First_Alive_Message);
     UpdateFollowingPokemon();
     ScriptContext_Enable();
-    return;
 }
+
 
 static void MiscAction_Followers_1(u8 taskId) { MiscAction_Followers_SetSlot(taskId, 0); }
 static void MiscAction_Followers_2(u8 taskId) { MiscAction_Followers_SetSlot(taskId, 1); }
@@ -451,14 +457,22 @@ static void MiscAction_Followers_SetSlot(u8 taskId, u8 slot)
 {
     Misc_DestroyMenu_Full(taskId);
     ResetFollowerPositionHistory();
+
     struct ObjectEvent *followerObject = GetFollowerObject();
-    if (followerObject && !FlagGet(B_FLAG_FOLLOWERS_DISABLED))
+    u8 currentSlot = VarGet(VAR_FOLLOWER_INDEX);
+
+    if (followerObject && !FlagGet(B_FLAG_FOLLOWERS_DISABLED) && slot != currentSlot)
     {
         ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
         ObjectEventSetHeldMovement(followerObject, MOVEMENT_ACTION_ENTER_POKEBALL);
-        CreateTask(Task_RemoveFollowerAfterAnim, 0);
+        
+        u8 task = CreateTask(Task_RemoveFollowerAfterAnimAndUpdateFollower, 0);
+        gTasks[task].data[1] = slot; // neuen Slot speichern
+        SetWordTaskArg(task, 2, (uintptr_t)Misc_Follower_Mode_Slot_Message); // <- fix!
+        return; // NICHT direkt UpdateFollowingPokemon aufrufen!
     }
 
+    // Fallback, falls keine Animation nötig
     VarSet(VAR_FOLLOWER_INDEX, slot);
     FlagClear(B_FLAG_FOLLOWERS_DISABLED);
     Misc_DestroyMenu_Full_Script(taskId, Misc_Follower_Mode_Slot_Message);

@@ -2424,7 +2424,15 @@ void GetFollowerAction(struct ScriptContext *ctx) // Essentially a big switch fo
     u32 condCount = 0;
     u32 emotion;
     struct ObjectEvent *objEvent = GetFollowerObject();
-    struct Pokemon *mon = GetFirstLiveMon();
+    struct Pokemon *mon;
+    u8 slot = VarGet(VAR_FOLLOWER_INDEX);
+    if (slot == FOLLOWER_SLOT_AUTO)
+        mon = GetFirstLiveMon();
+    else if (slot >= PARTY_SIZE)
+        mon = NULL;
+    else
+        mon = &gPlayerParty[slot];
+
     u8 emotion_weight[FOLLOWER_EMOTION_LENGTH] =
     {
         [FOLLOWER_EMOTION_HAPPY] = 10,
@@ -5338,6 +5346,8 @@ static bool32 TryStartFollowerTransformEffect(struct ObjectEvent *objectEvent, s
     u32 multi;
     struct Pokemon *mon;
     u32 ability;
+
+    // Wetterbasierte Formwandlung
     if (DoesSpeciesHaveFormChangeMethod(OW_SPECIES(objectEvent), FORM_CHANGE_OVERWORLD_WEATHER)
         && OW_SPECIES(objectEvent) != (multi = GetOverworldWeatherSpecies(OW_SPECIES(objectEvent))))
     {
@@ -5346,17 +5356,34 @@ static bool32 TryStartFollowerTransformEffect(struct ObjectEvent *objectEvent, s
         return TRUE;
     }
 
-    if (OW_FOLLOWERS_COPY_WILD_PKMN
-        && (MonKnowsMove(mon = GetFirstLiveMon(), MOVE_TRANSFORM)
-         || (ability = GetMonAbility(mon)) == ABILITY_IMPOSTER || ability == ABILITY_ILLUSION)
-        && (Random() & 0xFFFF) < 18 && GetLocalWildMon(FALSE))
+    // Transform durch Attacke oder Fähigkeit + Wildes Pokémon vorhanden
+    if (OW_FOLLOWERS_COPY_WILD_PKMN)
     {
-        sprite->data[7] = TRANSFORM_TYPE_RANDOM_WILD << 8;
-        PlaySE(SE_M_MINIMIZE);
-        return TRUE;
+        u8 slot = VarGet(VAR_FOLLOWER_INDEX);
+
+        if (slot == FOLLOWER_SLOT_AUTO)
+            mon = GetFirstLiveMon();
+        else if (slot >= PARTY_SIZE)
+            return FALSE;
+        else
+            mon = &gPlayerParty[slot];
+
+        ability = GetMonAbility(mon);
+
+        if ((MonKnowsMove(mon, MOVE_TRANSFORM)
+            || ability == ABILITY_IMPOSTER
+            || ability == ABILITY_ILLUSION)
+            && (Random() & 0xFFFF) < 18
+            && GetLocalWildMon(FALSE))
+        {
+            sprite->data[7] = TRANSFORM_TYPE_RANDOM_WILD << 8;
+            PlaySE(SE_M_MINIMIZE);
+            return TRUE;
+        }
     }
     return FALSE;
 }
+
 
 static bool8 UpdateFollowerTransformEffect(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
@@ -6084,18 +6111,42 @@ void IsFollowerFieldMoveUser(struct ScriptContext *ctx)
     Script_RequestWriteVar(varId);
 
     u16 *var = GetVarPointer(varId);
-    u16 userIndex = gFieldEffectArguments[0]; // field move user index
-    struct Pokemon *follower = GetFirstLiveMon();
+    u16 userIndex = gFieldEffectArguments[0]; // Index des Pokémon, das das Field Move verwendet
     struct ObjectEvent *obj = GetFollowerObject();
+    struct Pokemon *follower;
+    u8 followerIndex = VarGet(VAR_FOLLOWER_INDEX);
+
     if (var == NULL)
         return;
+
     *var = FALSE;
-    if (follower && obj && !obj->invisible)
+
+    // Wenn ein Follower aktiv ist und sichtbar ist
+    if (obj && !obj->invisible)
     {
-        u16 followIndex = ((u32)follower - (u32)gPlayerParty) / sizeof(struct Pokemon);
-        *var = userIndex == followIndex;
+        // Bestimme das Pokémon basierend auf dem Slot
+        if (followerIndex == FOLLOWER_SLOT_AUTO)
+        {
+            follower = GetFirstLiveMon();
+            if (follower == NULL)
+                return;
+            // Berechne den Index relativ zur Party
+            followerIndex = (follower - gPlayerParty);
+        }
+        else if (followerIndex >= PARTY_SIZE)
+        {
+            return;
+        }
+        else
+        {
+            follower = &gPlayerParty[followerIndex];
+        }
+
+        // Vergleiche den Nutzer-Index mit dem Follower-Index
+        *var = (userIndex == followerIndex);
     }
 }
+
 
 void SetTrainerMovementType(struct ObjectEvent *objectEvent, u8 movementType)
 {

@@ -211,12 +211,17 @@ text LittlerootTown_Text_CanUsePCToStoreItems {
 }
 
 script LittlerootTown_EventScript_Boy {
+	lock
+	faceplayer
 	msgbox (LittlerootTown_Text_BirchSpendsDaysInLab, MSGBOX_NPC)
 	giveitem (ITEM_MEGA_RING)
 	giveitem(ITEM_SWAMPERTITE, 100)
 	giveitem(ITEM_SHINY_CHARM)
-	givemon(SPECIES_SWAMPERT,10,ITEM_SWAMPERTITE,ITEM_MASTER_BALL)
-	givemon(SPECIES_RAYQUAZA,10,,ITEM_MASTER_BALL)
+	givemon(SPECIES_BULBASUR,	10,					 ,ITEM_MASTER_BALL)
+	givemon(SPECIES_CHARMANDER,	10,					 ,ITEM_MASTER_BALL)
+	givemon(SPECIES_SQUIRTLE,	10,			   		 ,ITEM_MASTER_BALL)
+	givemon(SPECIES_SWAMPERT,	10,	 ITEM_SWAMPERTITE,ITEM_MASTER_BALL)
+	release
 	end
 }
 
