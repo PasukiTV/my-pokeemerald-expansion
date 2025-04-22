@@ -451,7 +451,6 @@ static void MiscAction_Followers_SetSlot(u8 taskId, u8 slot)
 {
     Misc_DestroyMenu_Full(taskId);
     ResetFollowerPositionHistory();
-
     struct ObjectEvent *followerObject = GetFollowerObject();
     if (followerObject && !FlagGet(B_FLAG_FOLLOWERS_DISABLED))
     {

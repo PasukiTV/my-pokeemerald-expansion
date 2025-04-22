@@ -87,30 +87,30 @@ Misc_Follower_Mode_First_Alive_Message_Text::
 
 Misc_Follower_Mode_Slot_1_Message_Text::
 # 47 "data/scripts/misc.pory"
-	.string "Follower Mode set to!\n"
-	.string "The first Pokémon in your party is now following you$"
+	.string "The first Pokémon in your party\n"
+	.string "is now following you$"
 
 Misc_Follower_Mode_Slot_2_Message_Text::
 # 52 "data/scripts/misc.pory"
-	.string "Follower Mode set to!\n"
-	.string "The second Pokémon in your party is now following you$"
+	.string "The second Pokémon in your party \n"
+	.string "is now following you$"
 
 Misc_Follower_Mode_Slot_3_Message_Text::
 # 57 "data/scripts/misc.pory"
-	.string "Follower Mode set to!\n"
-	.string "The third Pokémon in your party is now following you$"
+	.string "The third Pokémon in your party \n"
+	.string "is now following you$"
 
 Misc_Follower_Mode_Slot_4_Message_Text::
 # 62 "data/scripts/misc.pory"
-	.string "Follower Mode set to!\n"
-	.string "The fourth Pokémon in your party is now following you$"
+	.string "The fourth Pokémon in your party \n"
+	.string "is now following you$"
 
 Misc_Follower_Mode_Slot_5_Message_Text::
 # 67 "data/scripts/misc.pory"
-	.string "Follower Mode set to!\n"
-	.string "The fifth Pokémon in your party is now following you$"
+	.string "The fifth Pokémon in your party \n"
+	.string "is now following you$"
 
 Misc_Follower_Mode_Slot_6_Message_Text::
 # 72 "data/scripts/misc.pory"
-	.string "Follower Mode set to!\n"
-	.string "The sixth Pokémon in your party is now following you$"
+	.string "The sixth Pokémon in your party \n"
+	.string "is now following you$"

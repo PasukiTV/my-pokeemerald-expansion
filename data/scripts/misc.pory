@@ -45,33 +45,33 @@ script Misc_Follower_Mode_Slot_Message{
 }
 
 text Misc_Follower_Mode_Slot_1_Message_Text{
-	"Follower Mode set to!\n"
-	"The first Pokémon in your party is now following you$"
+	"The first Pokémon in your party\n"
+	"is now following you$"
 }
 
 text Misc_Follower_Mode_Slot_2_Message_Text{
-	"Follower Mode set to!\n"
-	"The second Pokémon in your party is now following you$"
+	"The second Pokémon in your party \n"
+	"is now following you$"
 }
 
 text Misc_Follower_Mode_Slot_3_Message_Text{
-	"Follower Mode set to!\n"
-	"The third Pokémon in your party is now following you$"
+	"The third Pokémon in your party \n"
+	"is now following you$"
 }
 
 text Misc_Follower_Mode_Slot_4_Message_Text{
-	"Follower Mode set to!\n"
-	"The fourth Pokémon in your party is now following you$"
+	"The fourth Pokémon in your party \n"
+	"is now following you$"
 }
 
 text Misc_Follower_Mode_Slot_5_Message_Text{
-	"Follower Mode set to!\n"
-	"The fifth Pokémon in your party is now following you$"
+	"The fifth Pokémon in your party \n"
+	"is now following you$"
 }
 
 text Misc_Follower_Mode_Slot_6_Message_Text{
-	"Follower Mode set to!\n"
-	"The sixth Pokémon in your party is now following you$"
+	"The sixth Pokémon in your party \n"
+	"is now following you$"
 }
 
 

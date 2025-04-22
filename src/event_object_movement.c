@@ -7443,15 +7443,34 @@ static u8 LoadFillColorPalette(u16 color, u16 paletteTag, struct Sprite *sprite)
 
 static void ObjectEventSetPokeballGfx(struct ObjectEvent *objEvent)
 {
-    #if OW_FOLLOWERS_POKEBALLS
+#if OW_FOLLOWERS_POKEBALLS
     enum PokeBall ball = BALL_STRANGE;
+
+    // Nur beim Follower-Objekt prüfen wir das Pokémon
     if (objEvent->localId == OBJ_EVENT_ID_FOLLOWER)
     {
-        struct Pokemon *mon = GetFirstLiveMon();
-        if (mon)
-            ball = GetMonData(mon, MON_DATA_POKEBALL);
+        u32 species;
+        bool32 shiny, female;
+
+        // Hole Pokéball-Art vom Follower-Pokémon
+        if (GetFollowerInfo(&species, &shiny, &female))
+        {
+            struct Pokemon *mon;
+            u8 slot = VarGet(VAR_FOLLOWER_INDEX);
+
+            if (slot == FOLLOWER_SLOT_AUTO)
+                mon = GetFirstLiveMon();
+            else if (slot < PARTY_SIZE)
+                mon = &gPlayerParty[slot];
+            else
+                mon = NULL;
+
+            if (mon != NULL)
+                ball = GetMonData(mon, MON_DATA_POKEBALL);
+        }
     }
 
+    // Spezialgrafik laden, wenn vorhanden
     if (ball != BALL_POKE && ball < POKEBALL_COUNT)
     {
         const struct ObjectEventGraphicsInfo *info = &gPokeballGraphics[ball];
@@ -7461,7 +7480,9 @@ static void ObjectEventSetPokeballGfx(struct ObjectEvent *objEvent)
             return;
         }
     }
-    #endif //OW_FOLLOWERS_POKEBALLS
+#endif // OW_FOLLOWERS_POKEBALLS
+
+    // Standardgrafik
     ObjectEventSetGraphicsId(objEvent, OBJ_EVENT_GFX_POKE_BALL);
 }
 
