@@ -696,14 +696,14 @@ struct
     TaskFunc func;
 } static const sCursorOptions[MENU_FIELD_MOVES] =
 {
-    [MENU_SUMMARY] = {COMPOUND_STRING("SUMMARY"), CursorCb_Summary},
-    [MENU_SWITCH] = {COMPOUND_STRING("SWITCH"), CursorCb_Switch},
+    [MENU_SUMMARY] = {COMPOUND_STRING("BERICHT"), CursorCb_Summary},
+    [MENU_SWITCH] = {COMPOUND_STRING("TAUSCH"), CursorCb_Switch},
     [MENU_CANCEL1] = {gText_Cancel2, CursorCb_Cancel1},
     [MENU_ITEM] = {COMPOUND_STRING("ITEM"), CursorCb_Item},
     [MENU_GIVE] = {gMenuText_Give, CursorCb_Give},
-    [MENU_TAKE_ITEM] = {COMPOUND_STRING("TAKE"), CursorCb_TakeItem},
+    [MENU_TAKE_ITEM] = {COMPOUND_STRING("NEHMEN"), CursorCb_TakeItem},
     [MENU_MAIL] = {COMPOUND_STRING("MAIL"), CursorCb_Mail},
-    [MENU_TAKE_MAIL] = {COMPOUND_STRING("TAKE"), CursorCb_TakeMail},
+    [MENU_TAKE_MAIL] = {COMPOUND_STRING("NEHMEN"), CursorCb_TakeMail},
     [MENU_READ] = {COMPOUND_STRING("READ"), CursorCb_Read},
     [MENU_CANCEL2] = {gText_Cancel2, CursorCb_Cancel2},
     [MENU_SHIFT] = {COMPOUND_STRING("SHIFT"), CursorCb_SendMon},

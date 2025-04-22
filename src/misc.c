@@ -400,22 +400,30 @@ void ReopenFollowersMenu(void)
 static void MiscAction_Followers_Deactivated(u8 taskId)
 {
     Misc_DestroyMenu_Full(taskId);
+    ResetFollowerPositionHistory();
+
     struct ObjectEvent *followerObject = GetFollowerObject();
+
+    // Wenn Follower sichtbar ist, Animation abspielen
     if (followerObject && !FlagGet(B_FLAG_FOLLOWERS_DISABLED))
-    { 
+    {
         ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
         ObjectEventSetHeldMovement(followerObject, MOVEMENT_ACTION_ENTER_POKEBALL);
-        CreateTask(Task_RemoveFollowerAfterAnim, 0);
+
+        u8 task = CreateTask(Task_RemoveFollowerAfterAnimAndUpdateFollower, 0);
+        gTasks[task].data[1] = FOLLOWER_SLOT_AUTO; // egal, deaktiviert sowieso
+        SetWordTaskArg(task, 2, (uintptr_t)Misc_Follower_Mode_Off_Message); // Nachricht merken
         FlagSet(B_FLAG_FOLLOWERS_DISABLED);
-        Misc_DestroyMenu_Full_Script(taskId, Misc_Follower_Mode_Off_Message);
-    }else
-    {
-        FlagSet(B_FLAG_FOLLOWERS_DISABLED);
-        Misc_DestroyMenu_Full_Script(taskId, Misc_Follower_Mode_Off_Message);
+        return;
     }
+
+    // Kein Follower sichtbar – sofort deaktivieren
+    FlagSet(B_FLAG_FOLLOWERS_DISABLED);
+    Misc_DestroyMenu_Full_Script(taskId, Misc_Follower_Mode_Off_Message);
+    UpdateFollowingPokemon();
     ScriptContext_Enable();
-    return;
 }
+
 
 static void MiscAction_Followers_First_Alive(u8 taskId)
 {
