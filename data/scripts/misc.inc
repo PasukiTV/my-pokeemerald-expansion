@@ -27,90 +27,90 @@ Misc_Follower_Mode_First_Alive_Message::
 Misc_Follower_Mode_Slot_Message::
 # 29 "data/scripts/misc.pory"
 	switch VAR_FOLLOWER_INDEX
-# 31 "data/scripts/misc.pory"
+# 30 "data/scripts/misc.pory"
 	case 0, Misc_Follower_Mode_Slot_Message_3
-# 33 "data/scripts/misc.pory"
+# 32 "data/scripts/misc.pory"
 	case 1, Misc_Follower_Mode_Slot_Message_4
-# 35 "data/scripts/misc.pory"
+# 34 "data/scripts/misc.pory"
 	case 2, Misc_Follower_Mode_Slot_Message_5
-# 37 "data/scripts/misc.pory"
+# 36 "data/scripts/misc.pory"
 	case 3, Misc_Follower_Mode_Slot_Message_6
-# 39 "data/scripts/misc.pory"
+# 38 "data/scripts/misc.pory"
 	case 4, Misc_Follower_Mode_Slot_Message_7
-# 41 "data/scripts/misc.pory"
+# 40 "data/scripts/misc.pory"
 	case 5, Misc_Follower_Mode_Slot_Message_8
 Misc_Follower_Mode_Slot_Message_1:
-# 44 "data/scripts/misc.pory"
+# 43 "data/scripts/misc.pory"
 	goto Misc_MessageEnd
 	return
 
 Misc_Follower_Mode_Slot_Message_3:
-# 32 "data/scripts/misc.pory"
+# 31 "data/scripts/misc.pory"
 	msgbox Misc_Follower_Mode_Slot_1_Message_Text
 	goto Misc_Follower_Mode_Slot_Message_1
 
 Misc_Follower_Mode_Slot_Message_4:
-# 34 "data/scripts/misc.pory"
+# 33 "data/scripts/misc.pory"
 	msgbox Misc_Follower_Mode_Slot_2_Message_Text
 	goto Misc_Follower_Mode_Slot_Message_1
 
 Misc_Follower_Mode_Slot_Message_5:
-# 36 "data/scripts/misc.pory"
+# 35 "data/scripts/misc.pory"
 	msgbox Misc_Follower_Mode_Slot_3_Message_Text
 	goto Misc_Follower_Mode_Slot_Message_1
 
 Misc_Follower_Mode_Slot_Message_6:
-# 38 "data/scripts/misc.pory"
+# 37 "data/scripts/misc.pory"
 	msgbox Misc_Follower_Mode_Slot_4_Message_Text
 	goto Misc_Follower_Mode_Slot_Message_1
 
 Misc_Follower_Mode_Slot_Message_7:
-# 40 "data/scripts/misc.pory"
+# 39 "data/scripts/misc.pory"
 	msgbox Misc_Follower_Mode_Slot_5_Message_Text
 	goto Misc_Follower_Mode_Slot_Message_1
 
 Misc_Follower_Mode_Slot_Message_8:
-# 42 "data/scripts/misc.pory"
+# 41 "data/scripts/misc.pory"
 	msgbox Misc_Follower_Mode_Slot_6_Message_Text
 	goto Misc_Follower_Mode_Slot_Message_1
 
 
 Misc_Follower_Mode_Off_Message_Text::
 # 13 "data/scripts/misc.pory"
-	.string "Follower Mode set to!\n"
-	.string "Follower deactivated$"
+	.string "Begleiter-Modus eingestellt!\n"
+	.string "Begleiter deaktiviert$"
 
 Misc_Follower_Mode_First_Alive_Message_Text::
 # 23 "data/scripts/misc.pory"
-	.string "Follower Mode set to!\n"
-	.string "First Alive Pokemon in Team$"
+	.string "Begleiter-Modus eingestellt!\n"
+	.string "Erstes kampfbereites Pokémon im Team$"
 
 Misc_Follower_Mode_Slot_1_Message_Text::
-# 47 "data/scripts/misc.pory"
-	.string "The first Pokémon in your party\n"
-	.string "is now following you$"
+# 46 "data/scripts/misc.pory"
+	.string "Das erste Pokémon in deinem Team\n"
+	.string "folgt dir jetzt!$"
 
 Misc_Follower_Mode_Slot_2_Message_Text::
-# 52 "data/scripts/misc.pory"
-	.string "The second Pokémon in your party \n"
-	.string "is now following you$"
+# 51 "data/scripts/misc.pory"
+	.string "Das zweite Pokémon in deinem Team\n"
+	.string "folgt dir jetzt!$"
 
 Misc_Follower_Mode_Slot_3_Message_Text::
-# 57 "data/scripts/misc.pory"
-	.string "The third Pokémon in your party \n"
-	.string "is now following you$"
+# 56 "data/scripts/misc.pory"
+	.string "Das dritte Pokémon in deinem Team\n"
+	.string "folgt dir jetzt!$"
 
 Misc_Follower_Mode_Slot_4_Message_Text::
-# 62 "data/scripts/misc.pory"
-	.string "The fourth Pokémon in your party \n"
-	.string "is now following you$"
+# 61 "data/scripts/misc.pory"
+	.string "Das vierte Pokémon in deinem Team\n"
+	.string "folgt dir jetzt!$"
 
 Misc_Follower_Mode_Slot_5_Message_Text::
-# 67 "data/scripts/misc.pory"
-	.string "The fifth Pokémon in your party \n"
-	.string "is now following you$"
+# 66 "data/scripts/misc.pory"
+	.string "Das fünfte Pokémon in deinem Team\n"
+	.string "folgt dir jetzt!$"
 
 Misc_Follower_Mode_Slot_6_Message_Text::
-# 72 "data/scripts/misc.pory"
-	.string "The sixth Pokémon in your party \n"
-	.string "is now following you$"
+# 71 "data/scripts/misc.pory"
+	.string "Das sechste Pokémon in deinem Team\n"
+	.string "folgt dir jetzt!$"
