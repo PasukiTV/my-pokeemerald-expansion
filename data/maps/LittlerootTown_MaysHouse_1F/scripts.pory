@@ -89,22 +89,6 @@ LittlerootTown_MaysHouse_1F_EventScript_PetalburgGymReport::
 	goto PlayersHouse_1F_EventScript_PetalburgGymReportFemale
 	end
 
-LittlerootTown_MaysHouse_1F_EventScript_YoureNewNeighbor::
-	lockall
-	playse SE_PIN
-	applymovement LOCALID_RIVAL_MOM, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement LOCALID_RIVAL_MOM, Common_Movement_Delay48
-	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
-	applymovement LOCALID_RIVAL_MOM, LittlerootTown_MaysHouse_1F_Movement_RivalMomApproach
-	waitmovement 0
-	special GetRivalSonDaughterString
-	msgbox RivalsHouse_1F_Text_OhYoureTheNewNeighbor, MSGBOX_DEFAULT
-	setflag FLAG_MET_RIVAL_MOM
-	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 2
-	releaseall
-	end
 
 LittlerootTown_MaysHouse_1F_Movement_RivalMomApproach:
 	walk_down
@@ -324,31 +308,67 @@ LittlerootTown_MaysHouse_1F_Movement_MayGoUpstairs2:
 
 `
 
+script LittlerootTown_MaysHouse_1F_EventScript_YoureNewNeighbor{
+	lockall
+	playse (SE_PIN)
+	applymovement (LOCALID_RIVAL_MOM, Common_Movement_ExclamationMark)
+	waitmovement (0)
+	applymovement (LOCALID_RIVAL_MOM, Common_Movement_Delay48)
+	waitmovement (0)
+	applymovement (OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight)
+	applymovement (LOCALID_RIVAL_MOM, LittlerootTown_MaysHouse_1F_Movement_RivalMomApproach)
+	waitmovement (0)
+	special (GetRivalSonDaughterString)
+	if (checkplayergender == MALE) {
+		msgbox (RivalsHouse_1F_Text_OhYoureTheNewNeighbor, MSGBOX_DEFAULT)
+	} else {
+		msgbox (RivalsHouse_1F_Text_OhYoureTheNewNeighborr, MSGBOX_DEFAULT)
+	}
+	setflag (FLAG_MET_RIVAL_MOM)
+	setvar (VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 2)
+	releaseall
+	end
+}
+
 text RivalsHouse_1F_Text_OhYoureTheNewNeighbor {
 	"Oh, hallo. Und du bist…?\p"
 	"… … … … … … … … …\n"
 	"… … … … … … … … …\p"
 	"Oh, du bist {PLAYER}{KUN}, unser neuer\n"
 	"Nachbar! Hallo!\p"
+	"Wir haben eine {STR_VAR_1} in deinem Alter.\p"
+	"Meine {STR_VAR_1} freut sich schon\n"
+	"darauf, mit dir Freundschaft zu\l"
+	"schließen"
+}
+
+text RivalsHouse_1F_Text_OhYoureTheNewNeighborr {
+	"Oh, hallo. Und du bist…?\p"
+	"… … … … … … … … …\n"
+	"… … … … … … … … …\p"
+	"Oh, du bist {PLAYER}{KUN}, unser neuer\n"
+	"Nachbar! Hallo!\p"
 	"Wir haben ein {STR_VAR_1} in deinem Alter.\p"
-	"Unser {STR_VAR_1} freut sich schon darauf,\n"
-	"einen neuen Freund zu finden.\p"
-	"{STR_VAR_1} ist, glaube ich, oben.$"
+	"Mein {STR_VAR_1} freut sich schon\n"
+	"darauf, mit dir Freundschaft zu\l"
+	"schließen"
 }
 
 text RivalsHouse_1F_Text_LikeChildLikeFather {
 	"Wie der Vater, so das Kind.\p"
 	"Mein Mann ist genauso verrückt nach\n"
 	"POKéMON wie unser Kind.\p"
-"Wenn er nicht im LABOR ist, stromert er\n"
-"in hohem Gras herum.$"
+	"Wenn er nicht gerade in seinem LABOR\n"
+	"ist, krabbelt er mit Sicherheit draußen\l"
+	"durch das Gras."
 }
 
 text RivalsHouse_1F_Text_TooBusyToNoticeVisit {
-	"Dieser {RIVAL}…\p"
-	"Ich glaube, unser Kind ist zu sehr mit\n"
-	"den POKéMON beschäftigt, um zu merken,\l"
-	"dass du da warst, {PLAYER}{KUN}.$"
+	"Oh, {RIVAL}…\p"
+	"Ich vermute, unser Kind ist viel zu sehr\n"
+	"mit POKéMON beschäftigt und merkt gar\l"
+	"nicht, dass du zu Besuch hier bist,\n"
+	"{PLAYER}{KUN}.$"
 }
 
 text RivalsHouse_1F_Text_WentOutToRoute103 {
@@ -370,26 +390,30 @@ text RivalsHouse_1F_Text_ShouldGoHomeEverySoOften {
 
 text RivalsHouse_1F_Text_MayWhoAreYou {
 	"Hä?\n"
-	"Wer… wer bist du?\p"
+	"Wer… wer bist du denn?\p"
 	"… … … … … … … …\n"
 	"… … … … … … … …\p"
 	"Oh, du bist {PLAYER}{KUN}.\n"
-	"Ihr seid also heute eingezogen.\p"
+	"Du bist also gestern hierher gezogen.\p"
 	"Ähm… ich bin MAIKE.\n"
 	"Schön, dich kennenzulernen!\p"
-	"Ich habe den Traum, mit POKéMON aus\n"
-	"aller Welt Freundschaft zu schließen.\p"
-	"Ich… Ich habe von dir gehört, {PLAYER}{KUN},\n"
-	"von meinem Vater, PROF. BIRK.\p"
-	"Ich hatte gehofft, dass du nett bist,\n"
-	"{PLAYER}{KUN}, und dass wir Freunde werden.\p"
+	"Ich… Ich habe diesen Traum…\n"  
+	"Mit POKéMON in der ganzen Welt\l"
+	"Freundschaft zu schließen.\p"
+	"Ich… Ich habe schon von dir gehört.\n"
+	"Mein Vater, PROF. BIRK. hat mir von\l"
+	"dir erzählt.\p"
+	"Ich habe gehofft, dass du nett bist,\n"
+	"{PLAYER}{KUN}, und wir Freunde werden.\p"
 	"Oh, das ist albern, oder?\n"
-	"Ich kenne dich ja kaum, {PLAYER}{KUN}.\p"
-	"Eheheh…\p"
-	"Oh nein! Ich habe ganz vergessen!\p"
-	"Ich sollte meinem Vater helfen,\n"
+	"Ich habe dich doch gerade erst \l"
+	"kennen gelernt.\p"
+	"Hihihihi…\p"
+	"Oh, nein! Das habe ich ja total\n"
+	"vergessen\p"
+	"Ich sollte Vati doch helfen, ein paar\n"
 	"wilde POKéMON zu fangen!\p"
-	"{PLAYER}{KUN}, wir sehen uns später!$"
+	"{PLAYER}{KUN}, wir sehen uns später!"
 }
 
 text RivalsHouse_1F_Text_BrendanWhoAreYou {
@@ -415,7 +439,7 @@ text RivalsHouse_1F_Text_BrendanWhoAreYou {
 }
 
 text RivalsHouse_1F_Text_DoYouHavePokemon {
-	"Hallo, Nachbarin!\p"
-	"Hast du schon dein eigenes\n"
-	"POKéMON?$"
+	"Hallo, Nachbar!\p"
+	"Hast du schon ein\n"
+	"eigens POKéMON?"
 }

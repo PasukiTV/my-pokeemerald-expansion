@@ -112,10 +112,10 @@ static const u8 sText_Trainer1WithdrewPkmn[] = _("{B_TRAINER1_NAME_WITH_CLASS} r
 static const u8 sText_LinkTrainer1WithdrewPkmn[] = _("{B_LINK_OPPONENT1_NAME} ruft {B_BUFF1} zurück!");
 static const u8 sText_LinkTrainer2WithdrewPkmn[] = _("{B_LINK_SCR_TRAINER_NAME} ruft {B_BUFF1} zurück!");
 
-static const u8 sText_WildPkmnPrefix[] = _("Das wilde ");
-static const u8 sText_FoePkmnPrefix[] = _("Der gegnerische ");
-static const u8 sText_WildPkmnPrefixLower[] = _("das wilde ");
-static const u8 sText_FoePkmnPrefixLower[] = _("der gegnerische ");
+static const u8 sText_WildPkmnPrefix[] = _("Wildes ");
+static const u8 sText_FoePkmnPrefix[] = _("Gegnerisches ");
+static const u8 sText_WildPkmnPrefixLower[] = _("Wildes");
+static const u8 sText_FoePkmnPrefixLower[] = _("Gegner");
 static const u8 sText_EmptyString8[] = _("");
 
 static const u8 sText_FoePkmnPrefix2[] = _("Gegnerisches");
@@ -193,8 +193,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_STATSWONTINCREASE2]                   = COMPOUND_STRING("Die Werte von {B_ATK_NAME_WITH_PREFIX} können nicht weiter steigen!"),
     [STRINGID_AVOIDEDDAMAGE]                        = COMPOUND_STRING("{B_DEF_NAME_WITH_PREFIX} weicht dank {B_DEF_ABILITY} dem Angriff aus!"), // Fähigkeit eingeblendet
     [STRINGID_ITDOESNTAFFECT]                       = COMPOUND_STRING("Das wirkt nicht bei {B_DEF_NAME_WITH_PREFIX2}…"),
-    [STRINGID_ATTACKERFAINTED]                      = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} wurde kampfunfähig!\p"),
-    [STRINGID_TARGETFAINTED]                        = COMPOUND_STRING("{B_DEF_NAME_WITH_PREFIX} wurde kampfunfähig!\p"),
+    [STRINGID_ATTACKERFAINTED]                      = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} wurde besiegt!\p"),
+    [STRINGID_TARGETFAINTED]                        = COMPOUND_STRING("{B_DEF_NAME_WITH_PREFIX} wurde besiegt!\p"),
     [STRINGID_PLAYERGOTMONEY]                       = COMPOUND_STRING("Du erhältst ¥{B_BUFF1} für den Sieg!\p"),
     [STRINGID_PLAYERWHITEOUT]                       = COMPOUND_STRING("Du hast keine kampffähigen Pokémon mehr!\p"),
     #if B_WHITEOUT_MONEY >= GEN_4

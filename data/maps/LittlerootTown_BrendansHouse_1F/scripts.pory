@@ -90,23 +90,6 @@ LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport::
 	goto PlayersHouse_1F_EventScript_PetalburgGymReportMale
 	end
 
-LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor::
-	lockall
-	playse SE_PIN
-	applymovement LOCALID_RIVAL_MOM, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement LOCALID_RIVAL_MOM, Common_Movement_Delay48
-	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
-	applymovement LOCALID_RIVAL_MOM, LittlerootTown_BrendansHouse_1F_Movement_RivalMomApproach
-	waitmovement 0
-	special GetRivalSonDaughterString
-	msgbox RivalsHouse_1F_Text_OhYoureTheNewNeighbor, MSGBOX_DEFAULT
-	setflag FLAG_MET_RIVAL_MOM
-	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 2
-	releaseall
-	end
-
 LittlerootTown_BrendansHouse_1F_Movement_RivalMomApproach:
 	walk_down
 	walk_right
@@ -290,84 +273,110 @@ LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs2:
 	step_end
 
 `
-
+//OLD#
 text PlayersHouse_1F_Text_IsntItNiceInHere {
-    "MAMA: Siehst du, {PLAYER}?\n"
+    "MUTTER: Siehst du, {PLAYER}?\n"
     "Ist es hier nicht auch schön?$"
 }
-
+//OLD#
 text PlayersHouse_1F_Text_MoversPokemonGoSetClock {
     "Die POKéMON der Umzugsfirma machen\n"
     "die ganze Arbeit beim Umzug und Putzen.\l"
     "Das ist so praktisch!\p"
     "{PLAYER}, dein Zimmer ist oben.\n"
     "Geh und sieh es dir an, Liebling!\p"
-    "PAPA hat dir eine neue Uhr gekauft,\n"
+    "VATI hat dir eine neue Uhr gekauft,\n"
     "zur Erinnerung an unseren Umzug.\l"
     "Vergiss nicht, sie zu stellen!$"
 }
-
+//OLD#
 text PlayersHouse_1F_Text_ArentYouInterestedInRoom {
-    "MAMA: Na, {PLAYER}?\p"
+    "MUTTER: Na, {PLAYER}?\p"
     "Willst du dir nicht dein eigenes\n"
     "Zimmer ansehen?$"
 }
-
+//OLD#
 text PlayersHouse_1F_Text_GoSetTheClock {
-    "MAMA: {PLAYER}.\p"
+    "MUTTER: {PLAYER}.\p"
     "Geh und stell die Uhr in deinem Zimmer,\n"
     "Liebling.$"
 }
 
+script LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor{
+	lockall
+	playse (SE_PIN)
+	applymovement (LOCALID_RIVAL_MOM, Common_Movement_ExclamationMark)
+	waitmovement (0)
+	applymovement (LOCALID_RIVAL_MOM, Common_Movement_Delay48)
+	waitmovement (0)
+	applymovement (OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft)
+	applymovement (LOCALID_RIVAL_MOM, LittlerootTown_BrendansHouse_1F_Movement_RivalMomApproach)
+	waitmovement (0)
+	special (GetRivalSonDaughterString)
+	if (checkplayergender == MALE) {
+		msgbox (RivalsHouse_1F_Text_OhYoureTheNewNeighbor, MSGBOX_DEFAULT)
+	} else {
+		msgbox (RivalsHouse_1F_Text_OhYoureTheNewNeighborr, MSGBOX_DEFAULT)
+	}
+	setflag (FLAG_MET_RIVAL_MOM)
+	setvar (VAR_LITTLEROOT_HOUSES_STATE_MAY, 2)
+	releaseall
+	end
+}
 text PlayersHouse_1F_Text_OhComeQuickly {
-    "MAMA: Oh! {PLAYER}, {PLAYER}!\n"
-    "Komm schnell!$"
+    "MUTTER: Oh! {PLAYER}, {PLAYER}!\n"
+    "Schnell! Komm schnell her!$"
 }
 
 text PlayersHouse_1F_Text_MaybeDadWillBeOn {
-    "MAMA: Schau! Das ist die ARENA von\n"
-    "BLÜTENBURG!\nVielleicht ist PAPA zu sehen!$"
+    "MUTTER: Da! Da ist die ARENA von\n"
+    "BLÜTENBURG CITY!\n"
+	"Ich glaube, VATI ist im Fernsehen!$"
+}
+
+text PlayersHouse_1F_Text_ReportFromPetalburgGym {
+    "REPORTER: Das war unsere Reportage\n"
+    "über die ARENA von BLÜTENBURG CITY.$"
 }
 
 text PlayersHouse_1F_Text_ItsOverWeMissedHim {
-    "MAMA: Oh… Vorbei.\p"
-    "Ich glaube, das war PAPA,\n"
-    "aber wir haben ihn verpasst.\n"
-    "Wie schade.$"
+    "MUTTER: Oh… Schon vorbei.\p"
+    "Ich glaube, VATI war im Fernsehen und\n"
+    "wir haben ihn verpast. Schade!"
 }
 
 text PlayersHouse_1F_Text_GoIntroduceYourselfNextDoor {
     "Ach ja.\n"
-    "Einer von PAPAs Freunden wohnt hier.\p"
-    "Er heißt PROF. BIRK.\p"
-    "Er wohnt direkt nebenan. Du solltest\n"
-    "dich bei ihm vorstellen.$"
+    "Einer von VATIs Freunden wohnt hier.\p"
+    "Er heißt PROF.BIRK.\p"
+    "Er wohnt gleich nebenan, daher solltest\n"
+    "du hinübergehen und dich vorstellen.$"
 }
 
 text PlayersHouse_1F_Text_SeeYouHoney {
-    "MAMA: Tschüss, Liebling!$"
+    "MUTTER: Bis später, Spatz!$"
 }
 
 text PlayersHouse_1F_Text_DidYouMeetProfBirch {
-    "MAMA: Hast du dich PROF. BIRK\n"
+    "MUTTER: Hast du dich bei PROF. BIRK\n"
     "vorgestellt?$"
 }
 
 text PlayersHouse_1F_Text_YouShouldRestABit {
-    "MAMA: Wie geht’s dir, {PLAYER}?\n"
+    "MUTTER: Wie gehts dir, {PLAYER}?\n"
     "Du siehst ein wenig müde aus.\p"
     "Du solltest dich ein wenig ausruhen.$"
 }
 
 text PlayersHouse_1F_Text_TakeCareHoney {
-    "MAMA: Pass auf dich auf, Liebling!$"
+    "MUTTER: Pass auf dich auf, Liebling!$"
 }
 
 text PlayersHouse_1F_Text_GotDadsBadgeHeresSomethingFromMom {
-    "MAMA: Oh? Hat dir PAPA diesen ORDEN\n"
+    "MUTTER: Oh? Hat dir VATI diesen ORDEN\n"
     "gegeben?\p"
     "Dann habe ich auch etwas für dich,\n"
-    "von deiner MAMA!$"
+    "von deiner MUTTER!$"
 }
 
 text PlayersHouse_1F_Text_DontPushYourselfTooHard {
@@ -377,36 +386,31 @@ text PlayersHouse_1F_Text_DontPushYourselfTooHard {
 }
 
 text PlayersHouse_1F_Text_IsThatAPokenav {
-    "MAMA: Was ist das, Liebling? Ein POKéNAV?\n"
+    "MUTTER: Was ist das, Liebling? Ein POKéNAV?\n"
     "Hat dir jemand von DEVON den gegeben?\p"
-    "Wie wäre es, wenn du deine Mama\n"
+    "Wie wäre es, wenn du deine MUTTER\n"
     "registrierst?\p"
     "… … …$"
 }
 
 text PlayersHouse_1F_Text_RegisteredMom {
-    "MAMA wurde im\n"
+    "MUTTER wurde im\n"
     "POKéNAV registriert.$"
 }
-
+//OLD#
 text PlayersHouse_1F_Text_Vigoroth1 {
     "Fugiiiiih!$"
 }
-
+//OLD#
 text PlayersHouse_1F_Text_Vigoroth2 {
     "Huggoh, uggo uggo…$"
 }
 
-text PlayersHouse_1F_Text_ReportFromPetalburgGym {
-    "REPORTER: …Wir berichten live vor\n"
-    "der ARENA von BLÜTENBURG.$"
-}
-
 text PlayersHouse_1F_Text_TheresAMovieOnTV {
     "Im Fernsehen läuft ein Film.\p"
-    "Zwei Männer tanzen auf einer großen\n"
-    "Klaviatur.\p"
-    "Ich sollte besser gehen!$"
+    "Zwei Männer tanzen auf riesengroßen\n"
+    "Klaviertasten.\p"
+    "Aber es wird Zeit aufzubrechen!$"
 }
 
 text PlayersHouse_1F_Text_RunningShoesManual {
@@ -419,7 +423,7 @@ text PlayersHouse_1F_Text_RunningShoesManual {
 }
 
 text PlayersHouse_1F_Text_TicketFromBrineyCameForYou {
-    "PAPA: Hm?\p"
+    "VATI: Hm?\p"
     "He, {PLAYER}!\p"
     "Es ist schon eine Weile her, dass wir uns\n"
     "gesehen haben… Du wirkst irgendwie\n"
@@ -431,7 +435,7 @@ text PlayersHouse_1F_Text_TicketFromBrineyCameForYou {
 }
 
 text PlayersHouse_1F_Text_PortsInSlateportLilycove {
-    "PAPA: Hm, ein TICKET für eine Fähre?\p"
+    "VATI: Hm, ein TICKET für eine Fähre?\p"
     "Wenn ich mich recht erinnere, gibt es\n"
     "Fährhäfen in GRAPHITPORT und SEEGRASULB.$"
 }
@@ -439,12 +443,12 @@ text PlayersHouse_1F_Text_PortsInSlateportLilycove {
 text PlayersHouse_1F_Text_BetterGetBackToGym {
     "Ich sollte lieber zur ARENA von\n"
     "BLÜTENBURG zurückkehren.\p"
-    "MAMA, danke, dass du dich während\n"
+    "MUTTER, danke, dass du dich während\n"
     "meiner Abwesenheit um das Haus gekümmert hast.$"
 }
 
 text PlayersHouse_1F_Text_DadShouldStayLonger {
-    "MAMA: Dein PAPA…\p"
+    "MUTTER: Dein VATI…\p"
     "Er ist das erste Mal seit Langem zu Hause,\n"
     "und dann redet er nur über POKéMON.\p"
     "Er sollte sich lieber entspannen und\n"
@@ -452,7 +456,7 @@ text PlayersHouse_1F_Text_DadShouldStayLonger {
 }
 
 text PlayersHouse_1F_Text_IsThatABreakingStory {
-    "MAMA: Ist das etwa eine Eilmeldung?$"
+    "MUTTER: Ist das etwa eine Eilmeldung?$"
 }
 
 text PlayersHouse_1F_Text_LatiEmergencyNewsFlash {
@@ -467,12 +471,12 @@ text PlayersHouse_1F_Text_LatiEmergencyNewsFlash {
 }
 
 text PlayersHouse_1F_Text_WhatColorDidTheySay {
-    "MAMA: {PLAYER}, hast du das gehört?\p"
+    "MUTTER: {PLAYER}, hast du das gehört?\p"
     "Welche Farbe hatte das POKéMON laut\n"
     "dem Nachrichtensprecher?$"
 }
 
 text PlayersHouse_1F_Text_StillUnknownPokemon {
-    "MAMA: Das ist ja erstaunlich!\n"
+    "MUTTER: Das ist ja erstaunlich!\n"
     "Es gibt also immer noch unbekannte POKéMON.$"
 }

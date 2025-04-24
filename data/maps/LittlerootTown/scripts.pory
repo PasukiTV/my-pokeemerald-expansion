@@ -206,9 +206,9 @@ script LittlerootTown_EventScript_FatMan {
 
 text LittlerootTown_Text_CanUsePCToStoreItems {
     "Wenn du einen PC benutzt, kannst du\n"
-    "Items und POKéMON lagern.\p"
-    "Die Wissenschaft macht unglaubliche\n"
-    "Fortschritte!"
+    "dort Items und POKéMON lagern.\p"
+    "Die Kraft der Wissenschaft ist\n"
+    "atemberaubend"
 }
 
 script LittlerootTown_EventScript_Boy {
@@ -229,11 +229,12 @@ script LittlerootTown_EventScript_Boy {
 }
 
 text LittlerootTown_Text_BirchSpendsDaysInLab {
-    "PROF. BIRK verbringt den ganzen Tag\n"
-    "im LABOR mit seinen Studien und geht\l"
-    "plötzlich in die freie Natur, um weiter\n"
-    "zu forschen…\p"
-    "Wann ist PROF. BIRK denn mal zu Hause?$"
+    "PROF. BIRK verbringt seine Tage in\n"
+    "seinem LABOR, dann rennt er plötzlich\l"
+    "nach draußen in die Wildnis, um zu\l"
+    "forschen…\p"
+    "Wann ist PROF.BIRK eigentlich mal\n"
+	"zu Hause?"
 }
 
 script LittlerootTown_EventScript_Twin{
@@ -392,15 +393,15 @@ movement PlayerPushBack {
     step_end
 }
 
-text LittlerootTown_Text_DangerousIfYouDontHavePokemon {
-    "Es ist gefährlich, wenn du keine\n"
-    "eigenen POKéMON hast.$"
+text LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut {
+    "Äh, ähm, ähm!\p
+    Wenn du durch das hohe Gras läufst,\n
+    wirst du wilde POKéMON entdecken."
 }
 
-text LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut {
-    "Ähm, ähm, ähm!\p"
-    "Wenn du rausgehst und ins hohe Gras\n"
-    "gehst, springen wilde POKéMON heraus!$"
+text LittlerootTown_Text_DangerousIfYouDontHavePokemon {
+    "Das ist gefährlich, wenn du kein eigenens\n"
+    "POKéMON dabei hast.$"
 }
 
 text LittlerootTown_Text_GoodLuckCatchingPokemon {
@@ -432,7 +433,7 @@ script LittlerootTown_EventScript_TownSign{
 
 text LittlerootTown_Text_TownSign {
     "WURZELHEIM\n"
-    "Ein Ort, der keinen Schatten kennt.$"
+    "Ein Ort, wie es ihn nur einmal gibt.$"
 }
 
 script LittlerootTown_EventScript_BirchsLabSign{
@@ -441,7 +442,7 @@ script LittlerootTown_EventScript_BirchsLabSign{
 }
 
 text LittlerootTown_Text_ProfBirchsLab {
-    "POKéMON-LABOR von PROF. BIRK$"
+    "PROF. BIRK POKéMON-LABOR$"
 }
 
 script LittlerootTown_EventScript_BrendansHouseSign{
@@ -799,34 +800,38 @@ script LittlerootTown_EventScript_GiveRunningShoes{
 }
 
 text LittlerootTown_Text_WaitPlayer {
-    "MAMA: Warte, {PLAYER}!"
+    format("MAMA: Warte, {PLAYER}!")
 }
 
 text LittlerootTown_Text_WearTheseRunningShoes {
-    "MAMA: {PLAYER}! {PLAYER}! Hast du dich\n"
-    "PROF. BIRK vorgestellt?\p"
-    "Oh! Was für ein niedliches POKéMON!\n"
-    "Du hast es von PROF. BIRK bekommen.\p"
-    "Wie nett! Du bist ganz das Kind deines\n"
-    "Vaters. Du und das POKéMON, ihr passt\n"
-    "wirklich gut zusammen!\p"
-    "Hier, mein Schatz! Wenn du draußen\n"
-    "unterwegs bist, trag diese LAUFSCHUHE.\p"
-    "Damit bist du viel flotter unterwegs!"
+    format(
+		"MAMA: {PLAYER}! {PLAYER}! 
+		Hast du dich PROF.BIRK vorgestellt?\p
+    	Oh! Was für ein niedliches POKéMON!\n
+	    Du hast es von PROF. BIRK bekommen.\l
+	    Wie freundlich von ihm.\p 
+		Du kommst ganz nach deinem Vater.\p
+		Du und das POKéMON, ihr passt\n
+    	wirklich gut zusammen!\p
+    	Hier, mein Schatz!\p 
+		Wenn du draußen unterwegs bist,\n 
+		trag diese LAUFSCHUHE.\p
+    	Damit bist du viel flotter unterwegs!"
+	)
 }
 
 text LittlerootTown_Text_SwitchShoesWithRunningShoes {
-    "{PLAYER} tauschte die Schuhe gegen die\n"
+    "{PLAYER} tauscht die Schuhe gegen die\n"
     "LAUFSCHUHE aus."
 }
 
 text LittlerootTown_Text_ExplainRunningShoes {
-    "MAMA: {PLAYER}, zu diesen Schuhen\n"
-    "gab es eine Anleitung.\p"
-    "Halte während des Laufens den B-Knopf\n"
-    "gedrückt, um zu rennen.\p"
-    "Zieh die LAUFSCHUHE an und lauf los\n"
-    "in die große, weite Welt!“"
+    "MAMA: {PLAYER}, zu diesen Schuhen\n
+    gab es eine Anleitung.\p
+    Halte während des Laufens den B-Knopf\n
+    gedrückt, um zu rennen.\p
+    Zieh die LAUFSCHUHE an und lauf los\n
+    in die große, weite Welt!"
 }
 
 text LittlerootTown_Text_ComeHomeIfAnythingHappens {

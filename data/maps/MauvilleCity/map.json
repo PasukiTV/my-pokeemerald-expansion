@@ -230,7 +230,9 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -275,7 +277,7 @@
     {
       "type": "sign",
       "x": 19,
-      "y": 7,
+      "y": 6,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "MauvilleCity_EventScript_CitySign"

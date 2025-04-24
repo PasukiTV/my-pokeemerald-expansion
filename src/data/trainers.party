@@ -9667,7 +9667,7 @@ Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_MAY_ROUTE_103_MUDKIP ===
-Name: MAY
+Name: MAIKE
 Class: Rival
 Pic: May
 Gender: Female
@@ -9680,7 +9680,7 @@ Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MAY_ROUTE_110_MUDKIP ===
-Name: MAY
+Name: MAIKE
 Class: Rival
 Pic: May
 Gender: Female
@@ -9701,7 +9701,7 @@ Level: 20
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_MAY_ROUTE_119_MUDKIP ===
-Name: MAY
+Name: MAIKE
 Class: Rival
 Pic: May
 Gender: Female
@@ -9722,7 +9722,7 @@ Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_MAY_ROUTE_103_TREECKO ===
-Name: MAY
+Name: MAIKE
 Class: Rival
 Pic: May
 Gender: Female
@@ -9735,7 +9735,7 @@ Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MAY_ROUTE_110_TREECKO ===
-Name: MAY
+Name: MAIKE
 Class: Rival
 Pic: May
 Gender: Female
@@ -9756,7 +9756,7 @@ Level: 20
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_MAY_ROUTE_119_TREECKO ===
-Name: MAY
+Name: MAIKE
 Class: Rival
 Pic: May
 Gender: Female
@@ -9777,7 +9777,7 @@ Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_MAY_ROUTE_103_TORCHIC ===
-Name: MAY
+Name: MAIKE
 Class: Rival
 Pic: May
 Gender: Female
@@ -9790,7 +9790,7 @@ Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MAY_ROUTE_110_TORCHIC ===
-Name: MAY
+Name: MAIKE
 Class: Rival
 Pic: May
 Gender: Female
@@ -9811,7 +9811,7 @@ Level: 20
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_MAY_ROUTE_119_TORCHIC ===
-Name: MAY
+Name: MAIKE
 Class: Rival
 Pic: May
 Gender: Female
@@ -10984,7 +10984,7 @@ Level: 15
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_MAY_RUSTBORO_MUDKIP ===
-Name: MAY
+Name: MAIKE
 Class: Rival
 Pic: May
 Gender: Female
@@ -12321,7 +12321,7 @@ Level: 34
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 === TRAINER_MAY_LILYCOVE_MUDKIP ===
-Name: MAY
+Name: MAIKE
 Class: Rival
 Pic: May
 Gender: Female
@@ -12346,7 +12346,7 @@ Level: 34
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 === TRAINER_MAY_LILYCOVE_TREECKO ===
-Name: MAY
+Name: MAIKE
 Class: Rival
 Pic: May
 Gender: Female
@@ -12371,7 +12371,7 @@ Level: 34
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 === TRAINER_MAY_LILYCOVE_TORCHIC ===
-Name: MAY
+Name: MAIKE
 Class: Rival
 Pic: May
 Gender: Female
@@ -14120,7 +14120,7 @@ Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_MAY_RUSTBORO_TREECKO ===
-Name: MAY
+Name: MAIKE
 Class: Rival
 Pic: May
 Gender: Female
@@ -14137,7 +14137,7 @@ Level: 15
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_MAY_RUSTBORO_TORCHIC ===
-Name: MAY
+Name: MAIKE
 Class: Rival
 Pic: May
 Gender: Female
@@ -16863,7 +16863,7 @@ Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MAY_PLACEHOLDER ===
-Name: MAY
+Name: MAIKE
 Class: RS Protag
 Pic: RS May
 Gender: Female

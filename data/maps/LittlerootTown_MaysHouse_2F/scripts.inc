@@ -175,7 +175,7 @@ LittlerootTown_MaysHouse_2F_EventScript_MeetMayNorth::
 # 88 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
 	waitmovement 0
 # 89 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
-	msgbox RivalsHouse_2F_Text_MayWhoAreYou, MSGBOX_DEFAULT
+	msgbox RivalsHouse_1F_Text_MayWhoAreYou, MSGBOX_DEFAULT
 # 90 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
 	closemessage
 # 91 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
@@ -199,7 +199,7 @@ LittlerootTown_MaysHouse_2F_EventScript_MeetMaySouth::
 # 100 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
 	waitmovement 0
 # 101 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
-	msgbox RivalsHouse_2F_Text_MayWhoAreYou, MSGBOX_DEFAULT
+	msgbox RivalsHouse_1F_Text_MayWhoAreYou, MSGBOX_DEFAULT
 # 102 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
 	closemessage
 # 103 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
@@ -223,7 +223,7 @@ LittlerootTown_MaysHouse_2F_EventScript_MeetMayWest::
 # 112 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
 	waitmovement 0
 # 113 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
-	msgbox RivalsHouse_2F_Text_MayWhoAreYou, MSGBOX_DEFAULT
+	msgbox RivalsHouse_1F_Text_MayWhoAreYou, MSGBOX_DEFAULT
 # 114 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
 	closemessage
 # 115 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
@@ -245,7 +245,7 @@ LittlerootTown_MaysHouse_2F_EventScript_MeetMayEast::
 # 123 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
 	waitmovement 0
 # 124 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
-	msgbox RivalsHouse_2F_Text_MayWhoAreYou, MSGBOX_DEFAULT
+	msgbox RivalsHouse_1F_Text_MayWhoAreYou, MSGBOX_DEFAULT
 # 125 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
 	closemessage
 # 126 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
@@ -652,8 +652,8 @@ RivalsHouse_2F_Text_MayWhoAreYou::
 
 RivalsHouse_2F_Text_MayGettingReady::
 # 342 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
-	.string "POKéMON vollständig geheilt!\n"
-	.string "Items bereit, und…$"
+	.string "POKéMON: Bei guter Gesundheit!\n"
+	.string "Items: Verstaut. Fehlt noch… Was?$"
 
 RivalsHouse_2F_Text_BrendanWhoAreYou::
 # 347 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
@@ -679,8 +679,8 @@ RivalsHouse_2F_Text_BrendanWhoAreYou::
 
 RivalsHouse_2F_Text_BrendanGettingReady::
 # 369 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
-	.string "POKéMON vollständig geheilt…\n"
-	.string "Alle Items eingepackt, und…$"
+	.string "POKéMON: Bei guter Gesundheit!\n"
+	.string "Items: Verstaut. Fehlt noch… Was?$"
 
 RivalsHouse_2F_Text_ItsRivalsPokeBall::
 # 374 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"

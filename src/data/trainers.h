@@ -24144,7 +24144,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_ROUTE_103_MUDKIP] =
     {
 #line 9670
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 9671
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 9672
@@ -24178,7 +24178,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_ROUTE_110_MUDKIP] =
     {
 #line 9683
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 9684
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 9685
@@ -24234,7 +24234,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_ROUTE_119_MUDKIP] =
     {
 #line 9704
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 9705
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 9706
@@ -24290,7 +24290,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_ROUTE_103_TREECKO] =
     {
 #line 9725
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 9726
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 9727
@@ -24324,7 +24324,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_ROUTE_110_TREECKO] =
     {
 #line 9738
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 9739
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 9740
@@ -24380,7 +24380,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_ROUTE_119_TREECKO] =
     {
 #line 9759
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 9760
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 9761
@@ -24436,7 +24436,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_ROUTE_103_TORCHIC] =
     {
 #line 9780
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 9781
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 9782
@@ -24470,7 +24470,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_ROUTE_110_TORCHIC] =
     {
 #line 9793
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 9794
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 9795
@@ -24526,7 +24526,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_ROUTE_119_TORCHIC] =
     {
 #line 9814
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 9815
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 9816
@@ -27542,7 +27542,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_RUSTBORO_MUDKIP] =
     {
 #line 10987
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 10988
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 10989
@@ -30886,7 +30886,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_LILYCOVE_MUDKIP] =
     {
 #line 12324
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 12325
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 12326
@@ -30953,7 +30953,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_LILYCOVE_TREECKO] =
     {
 #line 12349
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 12350
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 12351
@@ -31020,7 +31020,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_LILYCOVE_TORCHIC] =
     {
 #line 12374
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 12375
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 12376
@@ -35445,7 +35445,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_RUSTBORO_TREECKO] =
     {
 #line 14123
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 14124
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 14125
@@ -35490,7 +35490,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_RUSTBORO_TORCHIC] =
     {
 #line 14140
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 14141
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 14142
@@ -42150,7 +42150,7 @@ F_TRAINER_FEMALE |
     [DIFFICULTY_NORMAL][TRAINER_MAY_PLACEHOLDER] =
     {
 #line 16866
-        .trainerName = _("MAY"),
+        .trainerName = _("MAIKE"),
 #line 16867
         .trainerClass = TRAINER_CLASS_RS_PROTAG,
 #line 16868
