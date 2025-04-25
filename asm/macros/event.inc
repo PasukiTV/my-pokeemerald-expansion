@@ -338,6 +338,12 @@
 	.byte SCR_OP_GETTIME
 	.endm
 
+	@ Sets the values of variable VAR_0x8000 to the time of day according to those found in rtc.h.
+	@ 0 = MORNING, 1 = DAY, 2 = EVENING, 3 = NIGHT
+	.macro gettimeofday
+	callnative ScrCmd_gettimeofday
+	.endm
+
 	@ Plays the specified sound. Only one sound may play at a time, with newer ones interrupting older ones.
 	.macro playse song:req
 	.byte SCR_OP_PLAYSE
@@ -1790,11 +1796,14 @@
 	.4byte \text
 	.endm
 
-	@ Equivalent to fadescreen but copies gPlttBufferUnfaded to an allocated buffer on the fade out
-	@ and the reverse on the fade in, in effect saving gPlttBufferUnfaded to restore it.
-	.macro fadescreenswapbuffers mode:req
+	@ Equivalent to fadescreen but uses a hardware fade and darken/lighten blend modes,
+	@ to avoid modifying palettes at all.
+	@ Useful for fade-out/fade-in without leaving the overworld or entering a new scene.
+	@ If nowait set, doesn't wait for the fade to complete
+	.macro fadescreenswapbuffers mode:req, nowait=0
 	.byte SCR_OP_FADESCREENSWAPBUFFERS
 	.byte \mode
+	.byte \nowait
 	.endm
 
 	@ Buffers the specified trainer's class name to the given string var.

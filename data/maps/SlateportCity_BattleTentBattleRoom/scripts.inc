@@ -100,7 +100,6 @@ SlateportCity_BattleTentBattleRoom_EventScript_EnterRoom::
 	setobjectxyperm LOCALID_OPPONENT, 5, 1
 # 51 "data/maps/SlateportCity_BattleTentBattleRoom/scripts.pory"
 	removeobject LOCALID_OPPONENT
-# 52 "data/maps/SlateportCity_BattleTentBattleRoom/scripts.pory"
 	addobject LOCALID_OPPONENT
 # 53 "data/maps/SlateportCity_BattleTentBattleRoom/scripts.pory"
 	applymovement LOCALID_OPPONENT, SlateportCity_BattleTentBattleRoom_Movement_OpponentEnter
