@@ -1156,3 +1156,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/birch_speech.inc"
 	.include "data/scripts/dexnav.inc"
 
+
+	.include "data/maps/PorytilesTutorialMap/scripts.inc"
